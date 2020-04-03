@@ -9,8 +9,8 @@ exports.install = function(Vue) {
   const oneDecimalRule = /^[1-9]{2}\.\d{1}$/; //保留1位小数
   const regZn = /[\u4e00-\u9fa5]/; //中文匹配 									 			//中文
   const regEn = /[`~!@#$%^&*()_+<>?:"{},./;'[\]]/im, //英文特殊字符
-    regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im; //身份证
-  const regID = /^[1-9]d{5}(18|19|20)d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)d{3}[0-9Xx]$/;
+    regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
+  const regID = /^[1-9]d{5}(18|19|20)d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)d{3}[0-9Xx]$/; //身份证
   //	保留两位小数
   const isvalidateMoney = (rule, value, callback) => {
     if (value != null && value != "") {

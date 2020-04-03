@@ -6,8 +6,6 @@ import store from "./store";
 import globelComponents from "./lib/globalComponents.js"; // 全局注册公共组件
 Vue.use(globelComponents);
 
-// Vue.use(globelComponents);
-
 import Element from "element-ui";
 import "./lib/css/element-variables.scss";
 
