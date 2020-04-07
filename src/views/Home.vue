@@ -5,23 +5,26 @@
 			<nav></nav>
 			<div class="home_header_menu">
 				<ul class="clearfix">
-					<li class="li0">
+					<li class="li1" v-if="dataOrMap" @click="headerMenuClick(1)">
+						<i class="el-icon-s-data"></i>
+					</li>
+					<li class="li2" v-else @click="headerMenuClick(2)">
 						<i class="el-icon-map-location"></i>
 					</li>
-					<li class="li1">
+					<li class="li3" @click="headerMenuClick(3)">
 						<el-badge v-if="hasMessage" is-dot class="item">
 							<i class="el-icon-message"></i>
 						</el-badge>
 						<i v-else class="el-icon-message"></i>
 					</li>
-					<li class="li2">
+					<li class="li4" @click="headerMenuClick(4)">
 						<el-badge v-if="hasAlarm" is-dot class="item">
 							<i class="el-icon-message-solid"></i>
 						</el-badge>
 						<i class="el-icon-message-solid" v-else></i>
 					</li>
-					<li class="li3">
-						<div class="li3_img">
+					<li class="li5">
+						<div class="li5_img">
 							<el-image
 								style="width: 36px; height: 36px;border-radius:50%"
 								:src="require('../assets/avatar.png')"
@@ -49,15 +52,43 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator"
+import { Vue, Component } from "vue-property-decorator";
 
 @Component({})
 export default class Home extends Vue {
+	$message;
+	$router;
+	$store;
+	private headerMenuClick(num: number): void {
+		switch (num) {
+			case 1:
+				this.$router.push("/dataHome");
+				this.$store.commit("changeMode", num);
+				break;
+			case 2:
+				this.$router.push("/gisHome");
+				this.$store.commit("changeMode", num);
+				break;
+			case 3:
+				this.$message.success("显示通知信息");
+				break;
+			case 4:
+				this.$message.success("显示告警信息");
+				break;
+			default:
+				console.log(num);
+				break;
+		}
+	}
+
 	get hasMessage(): boolean {
-		return this["$store"].state.myStore.hasMessage
+		return this["$store"].state.myStore.hasMessage;
 	}
 	get hasAlarm(): boolean {
-		return this["$store"].state.myStore.hasAlarm
+		return this["$store"].state.myStore.hasAlarm;
+	}
+	get dataOrMap(): boolean {
+		return this["$store"].state.myStore.dataOrMap;
 	}
 }
 </script>
@@ -93,19 +124,20 @@ export default class Home extends Vue {
 			li {
 				float: left;
 			}
-			.li0,
 			.li1,
-			.li2 {
+			.li2,
+			.li3,
+			.li4 {
 				font-size: 20px;
 				cursor: pointer;
 				margin-right: 20px;
 				padding: 8px 0;
 			}
-			.li3 {
+			.li5 {
 				position: relative;
 				padding-left: 45px;
 				line-height: 36px;
-				.li3_img {
+				.li5_img {
 					position: absolute;
 					top: 0;
 					left: 0;

@@ -8,12 +8,16 @@ interface Iparams {
 const state: Iparams = {
   menulist: [],
   hasMessage: true,
-  hasAlarm: false
+  hasAlarm: false,
+  dataOrMap: false
 };
 
 const mutations: Iparams = {
-  saveMenuList(states: Iparams, params: object) {
-    states.menulist = params;
+  saveMenuList(state: Iparams, params: object) {
+    state.menulist = params;
+  },
+  changeMode(state: Iparams, num: number) {
+    state.dataOrMap = num === 1 ? false : true;
   }
 };
 
