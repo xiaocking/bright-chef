@@ -90,6 +90,9 @@ export default class Home extends Vue {
 	get dataOrMap(): boolean {
 		return this["$store"].state.myStore.dataOrMap;
 	}
+	mounted() {
+		console.log("Home");
+	}
 }
 </script>
 

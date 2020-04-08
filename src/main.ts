@@ -11,6 +11,9 @@ import "./lib/css/element-variables.scss";
 
 Vue.use(Element, { size: "small" });
 
+
+
+
 Vue.config.productionTip = false;
 
 new Vue({

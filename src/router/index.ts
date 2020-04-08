@@ -26,22 +26,23 @@ const routes = [
         path: "/dataHome",
         name: "dataHome",
         component: dataHome,
-        children: routerLayout.dataRouterArr
+        children: routerLayout.dataRouterArr,
       },
       {
         path: "/gisHome",
         name: "gisHome",
         component: gisHome,
-        children: routerLayout.gisRouterArr
-      }
-    ]
-  }
+        children: routerLayout.gisRouterArr,
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  // mode: "history",
+  // mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;
