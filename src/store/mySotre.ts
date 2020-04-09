@@ -1,35 +1,35 @@
 // 这是我store的代码
 import { Commit } from "vuex";
 
-interface Iparams {
-  [propName: string]: any;
-}
-
-const state: Iparams = {
+const state = {
   menulist: [],
   hasMessage: true,
   hasAlarm: false,
-  dataOrMap: false
+  dataOrMap: false,
+  actGisNavIndex: 1,
 };
 
-const mutations: Iparams = {
-  saveMenuList(state: Iparams, params: object) {
+const mutations = {
+  saveMenuList(state: { menulist: object }, params: object) {
     state.menulist = params;
   },
-  changeMode(state: Iparams, num: number) {
+  changeMode(state: { dataOrMap: boolean }, num: number) {
     state.dataOrMap = num === 1 ? false : true;
-  }
+  },
+  changeGisNav(state: { actGisNavIndex: number }, num: number) {
+    state.actGisNavIndex = num;
+  },
 };
 
-const actions: Iparams = {
+const actions = {
   saveMenuListFN(context: { commit: Commit }, params: object) {
     context.commit("saveMenuList", params);
-  }
+  },
 };
 
 export default {
-  namespaced: false, // namespaced为false的时候，state,mutations,actions全局可以调用，为true，生成作用域，引用时要声明模块名称
+  namespaced: true, // namespaced为false的时候，state,mutations,actions全局可以调用，为true，生成作用域，引用时要声明模块名称
   state,
   mutations,
-  actions
+  actions,
 };

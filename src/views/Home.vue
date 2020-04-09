@@ -2,7 +2,25 @@
 	<div id="Home">
 		<header id="home_header">
 			<h1 class="home_header_logo">明厨亮灶</h1>
-			<nav></nav>
+			<nav id="nav">
+				<div class="nav-box" v-if="dataOrMap">
+					<div
+						class="nav-item"
+						v-for="item in gisNav"
+						:key="item.id"
+						:class="{'act':actGisNavIndex === item.id}"
+						@click="navClick(item)"
+					>
+						<p class="nav-icon" v-show="actGisNavIndex !== item.id">
+							<el-image :src="require('../assets/navIcon/'+item.icon+'.png')"></el-image>
+						</p>
+						<p class="nav-icon" v-show="actGisNavIndex === item.id">
+							<el-image :src="require('../assets/navIcon/'+item.actIcon+'.png')"></el-image>
+						</p>
+						<p class="nav-tit">{{ item.name }}</p>
+					</div>
+				</div>
+			</nav>
 			<div class="home_header_menu">
 				<ul class="clearfix">
 					<li class="li1" v-if="dataOrMap" @click="headerMenuClick(1)">
@@ -53,12 +71,24 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { namespace } from "vuex-class";
+const myStoreModule = namespace("myStore");
+
+import gisNavList from "../assets/mockDb/gisNavList.js";
+
+interface Inav {
+	name: string;
+	id: number;
+	icon: string;
+	actIcon: string;
+}
 
 @Component({})
 export default class Home extends Vue {
 	$message;
 	$router;
 	$store;
+
 	private headerMenuClick(num: number): void {
 		switch (num) {
 			case 1:
@@ -81,17 +111,21 @@ export default class Home extends Vue {
 		}
 	}
 
-	get hasMessage(): boolean {
-		return this["$store"].state.myStore.hasMessage;
+	@myStoreModule.State("actGisNavIndex") actGisNavIndex;
+	@myStoreModule.State("hasMessage") hasMessage;
+	@myStoreModule.State("hasAlarm") hasAlarm;
+	@myStoreModule.State("dataOrMap") dataOrMap;
+	@myStoreModule.Mutation("changeGisNav") changeGisNav;
+
+	private navClick(data) {
+		if (this.actGisNavIndex == data.id) {
+			return false;
+		}
+		this.changeGisNav(data.id);
 	}
-	get hasAlarm(): boolean {
-		return this["$store"].state.myStore.hasAlarm;
-	}
-	get dataOrMap(): boolean {
-		return this["$store"].state.myStore.dataOrMap;
-	}
-	mounted() {
-		console.log("Home");
+
+	get gisNav(): Inav[] {
+		return gisNavList;
 	}
 }
 </script>
@@ -118,8 +152,36 @@ export default class Home extends Vue {
 			box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
 			letter-spacing: 4px;
 		}
-		nav {
+		nav#nav {
 			flex: 1;
+			display: flex;
+			.nav-box {
+				flex: 1;
+				display: flex;
+				padding: 0 30px;
+			}
+			.nav-item {
+				flex: 1;
+				margin-left: 15px;
+				display: flex;
+				flex-direction: column;
+				align-content: center;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				.nav-icon {
+					width: 38px;
+					height: 38px;
+					margin-bottom: 15px;
+				}
+				&:first-child {
+					margin-left: 0;
+				}
+				&.act {
+					background: rgba(223, 237, 255, 0.2);
+					color: $text-nav-active-color;
+				}
+			}
 		}
 		.home_header_menu {
 			padding: 29px 0;
