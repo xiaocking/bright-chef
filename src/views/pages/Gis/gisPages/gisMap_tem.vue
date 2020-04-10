@@ -18,7 +18,7 @@ interface ImealsDataObj {
 	personNum: number;
 	cooker: number;
 	waiter: number;
-	leaderNamw: string;
+	leaderName: string;
 	leaderTel: string;
 	sex: string;
 	outPerseon: number;
@@ -73,7 +73,9 @@ export default class GisPage extends Vue {
 
 	private addCover(data: IshowData) {
 		// 添加覆盖物
-		console.log(data);
+		if (!data.dataList || data.dataList.length <= 0) {
+			return false;
+		}
 		if (data.mapCoverType == 1) {
 			for (const val of data.dataList) {
 				this.addPoint(val);
@@ -173,7 +175,9 @@ export default class GisPage extends Vue {
 
 		this.pluginInit(AMap); // 加载地图插件
 		this.addClick(); // 地图绑定点击事件
-		this.addCover(this.showData); // 展示地图数据信息
+		if (this.showData) {
+			this.addCover(this.showData); // 展示地图数据信息
+		}
 	}
 
 	private pluginInit(AMap) {

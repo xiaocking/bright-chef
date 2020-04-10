@@ -3,9 +3,8 @@
 		<div class="GisHomeContent">
 			<router-view />
 		</div>
-		<!-- <div id="MapBox">
-			<Map></Map>
-		</div>-->
+
+		<!-- <Map></Map> -->
 	</div>
 </template>
 
@@ -54,6 +53,11 @@ export default class GisPage extends Vue {
 	position: relative;
 	.GisHomeContent {
 		height: 100%;
+		// height: 0;
+		// position: absolute;
+		// left: 0;
+		// top: 0;
+		// z-index: 1;
 	}
 	.gisBox {
 		height: 100%;

@@ -10,10 +10,7 @@
 		:before-close="handleClose"
 		:close-on-click-modal="false"
 	>
-		<div
-			:style="{'max-height':height,'overflow-y': 'auto', 'overflow-x': 'hidden'}"
-			class="overflowCss"
-		>
+		<div :style="{'height':height,'max-height':MaxHeight }" class="overflowCss">
 			<slot></slot>
 		</div>
 		<div slot="footer" class="dialog-footer">
@@ -47,6 +44,10 @@ export default {
 			default: "7%"
 		},
 		height: {
+			type: String,
+			default: "auto"
+		},
+		MaxHeight: {
 			type: String,
 			default: "60vh"
 		}
