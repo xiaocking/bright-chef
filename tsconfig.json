@@ -11,7 +11,7 @@
     "allowSyntheticDefaultImports": true, // 允许没有默认导出的模块
     "sourceMap": true,
     "baseUrl": "./",
-    "types": ["webpack-env"],
+    "types": ["webpack-env", "node"],
     "paths": {
       "@/*": ["src/*"]
     },

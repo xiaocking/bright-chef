@@ -93,11 +93,12 @@ export default class Home extends Vue {
 		switch (num) {
 			case 1:
 				this.$router.push("/dataHome");
-				this.$store.commit("changeMode", num);
+				this.changeMode(num);
+				this.navClick({ id: 1 });
 				break;
 			case 2:
 				this.$router.push("/gisHome");
-				this.$store.commit("changeMode", num);
+				this.changeMode(num);
 				break;
 			case 3:
 				this.$message.success("显示通知信息");
@@ -116,6 +117,7 @@ export default class Home extends Vue {
 	@myStoreModule.State("hasAlarm") hasAlarm;
 	@myStoreModule.State("dataOrMap") dataOrMap;
 	@myStoreModule.Mutation("changeGisNav") changeGisNav;
+	@myStoreModule.Mutation("changeMode") changeMode;
 
 	private navClick(data) {
 		if (this.actGisNavIndex == data.id) {
