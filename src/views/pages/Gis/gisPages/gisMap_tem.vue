@@ -12,6 +12,11 @@ import amapInit from "../../../../lib/amapInit.js";
 interface ImealsDataObj {
 	name: string;
 	id: number;
+	area: 100;
+	score: number;
+	diviceNum: number;
+	complaint: number;
+	inspect: number;
 	eatType: number;
 	footType: number;
 	alarmNum: number;
@@ -29,6 +34,7 @@ interface ImealsDataObj {
 	mapArea: string;
 	lng: number;
 	lat: number;
+	remark: string;
 }
 
 interface IdataListObj {
@@ -147,6 +153,9 @@ export default class GisPage extends Vue {
 
 	private addArea(val) {
 		// 添加面
+		if (val.coverType == 3) {
+			//
+		}
 	}
 
 	private mapInit(AMap) {

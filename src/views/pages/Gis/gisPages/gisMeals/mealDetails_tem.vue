@@ -6,7 +6,7 @@
 					<p class="item-icon">
 						<el-image :src="require('@/assets/icon/icon02.png')"></el-image>
 					</p>
-					<p class="item-tit">人数</p>
+					<p class="item-tit">员工数</p>
 					<p class="item-num">{{detailsInfo.personNum}}</p>
 				</div>
 				<div class="mealDetails-deader-item">
