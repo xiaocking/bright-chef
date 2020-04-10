@@ -5,7 +5,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
+import { namespace } from "vuex-class";
+const myStoreModel = namespace("myStore");
 
 import amapInit from "../../../../lib/amapInit.js";
 
@@ -61,20 +63,36 @@ export default class GisPage extends Vue {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private coverList: any[] = [];
 
-	@Prop(Object) readonly showData!: IshowData;
-	@Watch("showData", { deep: true })
+	// @Prop(Object) readonly showData!: IshowData;
+
+	// @Emit("MapClick") private mapClick(e: MouseEvent) {
+	// 	// 地图点击
+	// 	return e;
+	// }
+
+	// @Emit("CoverClick") private CoverClick(e: MouseEvent) {
+	// 	// 覆盖物点击
+	// 	return e;
+	// }
+	@myStoreModel.Mutation("changeMapClickInfo") mapClick;
+	@myStoreModel.Mutation("changeCoverClickInfo") coverClick;
+
+	@myStoreModel.State("mapCoverInfo") mapCoverInfo;
+	@Watch("mapCoverInfo", { deep: true })
 	showDataChange(val) {
-		this.addCover(val);
+		// 覆盖物显示
+		console.log(val);
+		if (val) {
+			this.addCover(val);
+		}
 	}
 
-	@Emit("MapClick") private mapClick(e: MouseEvent) {
-		// 地图点击
-		return e;
-	}
-
-	@Emit("CoverClick") private CoverClick(e: MouseEvent) {
-		// 覆盖物点击
-		return e;
+	@myStoreModel.State("actGisNavIndex") actGisNavIndex;
+	@Watch("actGisNavIndex", { deep: true })
+	actGisNavIndexChange() {
+		// 菜单点击时
+		this.clearCover();
+		this.addCover(this.mapCoverInfo);
 	}
 
 	private addCover(data: IshowData) {
@@ -95,7 +113,7 @@ export default class GisPage extends Vue {
 				this.addArea(val);
 			}
 		} else {
-			console.log(this.showData);
+			console.log(data);
 		}
 	}
 
@@ -117,7 +135,8 @@ export default class GisPage extends Vue {
 				offset: new window.AMap.Pixel(-15, -20)
 			});
 			marker.on("click", () => {
-				this.CoverClick(val);
+				// 覆盖物点击
+				this.coverClick(val);
 			});
 			marker.setTitle(val.name);
 			this.coverList.push(marker);
@@ -184,8 +203,8 @@ export default class GisPage extends Vue {
 
 		this.pluginInit(AMap); // 加载地图插件
 		this.addClick(); // 地图绑定点击事件
-		if (this.showData) {
-			this.addCover(this.showData); // 展示地图数据信息
+		if (this.mapCoverInfo) {
+			this.addCover(this.mapCoverInfo); // 展示地图数据信息
 		}
 	}
 
@@ -263,7 +282,10 @@ export default class GisPage extends Vue {
 	private addClick() {
 		// 给地图添加点击事件
 		this.map.on("click", ev => {
-			this.mapClick(ev);
+			this.mapClick({
+				lng: ev.lnglat.lng,
+				lat: ev.lnglat.lat
+			});
 		});
 	}
 

@@ -4,7 +4,7 @@
 			<router-view />
 		</div>
 
-		<!-- <Map></Map> -->
+		<Map></Map>
 	</div>
 </template>
 
@@ -52,7 +52,8 @@ export default class GisPage extends Vue {
 	height: 100%;
 	position: relative;
 	.GisHomeContent {
-		height: 100%;
+		height: 0;
+		// height: 100%;
 		// height: 0;
 		// position: absolute;
 		// left: 0;

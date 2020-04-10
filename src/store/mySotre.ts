@@ -7,24 +7,49 @@ const state = {
   hasAlarm: false,
   dataOrMap: false,
   actGisNavIndex: 1,
+  mapCoverInfo: undefined,
+  mapClickInfo: undefined,
+  coverClickInfo: undefined
 };
 
 const mutations = {
   saveMenuList(state: { menulist: object }, params: object) {
     state.menulist = params;
   },
-  changeMode(state: { dataOrMap: boolean }, num: number) {
+  changeMode(
+    state: { dataOrMap: boolean; actGisNavIndex: number },
+    num: number
+  ) {
     state.dataOrMap = num === 1 ? false : true;
+    state.actGisNavIndex = 1;
   },
-  changeGisNav(state: { actGisNavIndex: number }, num: number) {
+  changeGisNav(state, num: number) {
+    state.mapCoverInfo = undefined;
+    state.mapClickInfo = undefined;
+    state.coverClickInfo = undefined;
     state.actGisNavIndex = num;
   },
+  changeMapClickInfo(state, obj) {
+    state.mapClickInfo = obj;
+  },
+  changeCoverClickInfo(state, obj) {
+    state.coverClickInfo = obj;
+  },
+  setMapCoverInfo(state, obj) {
+    state.mapCoverInfo = obj;
+  }
 };
 
 const actions = {
   saveMenuListFN(context: { commit: Commit }, params: object) {
     context.commit("saveMenuList", params);
-  },
+  }
+};
+
+const getters = {
+  mapClickInfo(state) {
+    return state.mapClickInfo;
+  }
 };
 
 export default {
@@ -32,4 +57,5 @@ export default {
   state,
   mutations,
   actions,
+  getters
 };
