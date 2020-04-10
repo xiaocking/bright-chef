@@ -5,12 +5,13 @@
 		:visible.sync="dialogVisible"
 		:width="width"
 		:top="top"
+		:fullscreen="fullscreen"
 		append-to-body
 		custom-class="commonDialogBox"
 		:before-close="handleClose"
 		:close-on-click-modal="false"
 	>
-		<div :style="{'height':height,'max-height':MaxHeight }" class="overflowCss">
+		<div :style="{'height':myHeight,'max-height':myMaxHeight }" class="overflowCss">
 			<slot></slot>
 		</div>
 		<div slot="footer" class="dialog-footer">
@@ -22,11 +23,6 @@
 
 <script>
 export default {
-	data() {
-		return {
-			dialogVisible: true
-		};
-	},
 	props: {
 		dialogBoxFlag: {
 			type: Boolean
@@ -50,6 +46,24 @@ export default {
 		MaxHeight: {
 			type: String,
 			default: "60vh"
+		},
+		fullscreen: {
+			type: Boolean,
+			default: false
+		}
+	},
+	data() {
+		return {
+			dialogVisible: true,
+			myMaxHeight: this.MaxHeight,
+			myHeight: this.height
+		};
+	},
+	created() {
+		if (this.fullscreen) {
+			const winHeight = window.innerHeight;
+			this.myHeight = winHeight - 126 + "px";
+			this.myMaxHeight = "100vh";
 		}
 	},
 	methods: {

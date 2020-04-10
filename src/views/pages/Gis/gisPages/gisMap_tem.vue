@@ -165,7 +165,7 @@ export default class GisPage extends Vue {
 			zoom: 13, //地图显示的缩放级别
 			zooms: [12, 20],
 			resizeEnable: true,
-			// features: ["bg", "road", "building"],
+			features: ["bg", "road", "building"],
 			viewMode: "3D", //开启3D视图,默认为关闭
 
 			rotateEnable: true,
