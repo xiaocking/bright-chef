@@ -46,6 +46,7 @@ interface IdataListObj {
 interface IshowData {
 	dataList: IdataListObj[];
 	mapCoverType: number;
+	dataType: number;
 }
 
 declare global {
@@ -81,9 +82,10 @@ export default class GisPage extends Vue {
 	@Watch("mapCoverInfo", { deep: true })
 	showDataChange(val) {
 		// 覆盖物显示
-		console.log(val);
 		if (val) {
 			this.addCover(val);
+		} else {
+			console.log("覆盖物显示error", val);
 		}
 	}
 
@@ -97,7 +99,11 @@ export default class GisPage extends Vue {
 
 	private addCover(data: IshowData) {
 		// 添加覆盖物
-		if (!data.dataList || data.dataList.length <= 0) {
+		if (
+			!data.dataList ||
+			data.dataList.length <= 0 ||
+			data.dataType != this.actGisNavIndex
+		) {
 			return false;
 		}
 		if (data.mapCoverType == 1) {
@@ -113,7 +119,7 @@ export default class GisPage extends Vue {
 				this.addArea(val);
 			}
 		} else {
-			console.log(data);
+			console.log("添加覆盖物error", data);
 		}
 	}
 

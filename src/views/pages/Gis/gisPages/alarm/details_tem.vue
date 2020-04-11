@@ -107,52 +107,22 @@
 <script lang="ts">
 import { Vue, Component, Emit, Prop } from "vue-property-decorator";
 
-interface ImealsDataObj {
-	name: string;
-	id: number;
-	area: 100;
-	score: number;
-	diviceNum: number;
-	complaint: number;
-	inspect: number;
-	eatType: number;
-	footType: number;
-	alarmNum: number;
-	personNum: number;
-	cooker: number;
-	waiter: number;
-	leaderName: string;
-	leaderTel: string;
-	sex: string;
-	outPerseon: number;
-	businessLicenseImgId: string;
-	HealthPermitImgId: string;
-	address: string;
-	coverType: number;
-	mapArea: string;
-	lng: number;
-	lat: number;
-	remark: string;
-}
-
 @Component
 export default class MealDetails extends Vue {
 	$message;
 
-	private srcList: string[] = [];
+	private srcList = [];
 
 	private doTel(val) {
 		this.$message.success("拨打电话 " + val);
 	}
 
-	@Prop(Object) readonly detailsInfo!: ImealsDataObj;
+	@Prop(Object) readonly detailsInfo!: object;
 
 	@Emit("closeDialog")
 	closeDialog(e) {
 		return e;
 	}
-
-	mountd() {}
 }
 </script>
 

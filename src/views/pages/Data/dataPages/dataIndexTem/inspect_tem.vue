@@ -93,7 +93,8 @@ export default class Inspect extends Vue {
 	}
 	.inspect-left {
 		height: 100%;
-		width: calc(100% - 200px);
+		width: calc(100% - 220px);
+		min-width: 250px;
 		padding-right: 20px;
 		border-right: 1px solid #eee;
 		#Inspect {
@@ -101,7 +102,8 @@ export default class Inspect extends Vue {
 		}
 	}
 	.inspect-right {
-		width: 180px;
+		width: calc(100% - 270px);
+		max-width: 200px;
 		height: 100%;
 		.d1 {
 			font-size: 42px;

@@ -45,7 +45,7 @@ export default class GisMeals extends Vue {
 		this.DetailsFlag = false;
 	}
 
-	@myStoreModel.State("mapClickInfo") mapClickInfo;
+	@myStoreModel.State("mapClickInfo") mapClickInfo: undefined;
 	@Watch("mapClickInfo", { deep: true })
 	mapClickChange(val) {
 		// 地图点击
@@ -54,7 +54,7 @@ export default class GisMeals extends Vue {
 		}
 	}
 
-	@myStoreModel.State("coverClickInfo") coverClickInfo;
+	@myStoreModel.State("coverClickInfo") coverClickInfo: undefined;
 	@Watch("coverClickInfo", { deep: true })
 	coverClickChange(val) {
 		// 覆盖物点击

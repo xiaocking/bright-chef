@@ -1,3 +1,4 @@
+import lnglat from "./lnglat.js";
 /**
  * eatType
  *  1 外卖店
@@ -31,7 +32,7 @@ const arr = [
     footType: 1,
     area: 100,
     score: 3.2,
-    diviceNum: 5,
+    diviceNum: 7,
     complaint: 47,
     inspect: 102,
     alarmNum: 41,
@@ -48,9 +49,46 @@ const arr = [
     coverType: 1,
     mapArea: "",
     alarmType: 2,
-    lng: 114.061965,
-    lat: 22.524376,
+    lng: lnglat.lng01,
+    lat: lnglat.lat01,
     remark: "川菜馆，菜偏辣",
+    deviceList: [
+      {
+        name: "后厨",
+        id: 1,
+        path: "hc01"
+      },
+      {
+        name: "前堂1",
+        id: 2,
+        path: "qt01"
+      },
+      {
+        name: "前堂2",
+        id: 3,
+        path: "qt04"
+      },
+      {
+        name: "前堂3",
+        id: 4,
+        path: "qt03"
+      },
+      {
+        name: "包间1",
+        id: 5,
+        path: "bj01"
+      },
+      {
+        name: "包间2",
+        id: 5,
+        path: "bj02"
+      },
+      {
+        name: "前门",
+        id: 6,
+        path: "qm01"
+      }
+    ]
   },
 
   {
@@ -60,7 +98,7 @@ const arr = [
     footType: 1,
     area: 120,
     score: 3.9,
-    diviceNum: 7,
+    diviceNum: 5,
     complaint: 84,
     inspect: 121,
     alarmNum: 20,
@@ -77,9 +115,37 @@ const arr = [
     coverType: 1,
     mapArea: "",
     alarmType: 1,
-    lng: 114.05822,
-    lat: 22.524346,
+    lng: lnglat.lng02,
+    lat: lnglat.lat02,
     remark: "陕西风味粉面馆，粉面味道很棒",
+
+    deviceList: [
+      {
+        name: "后厨",
+        id: 1,
+        path: "hc02"
+      },
+      {
+        name: "前堂1",
+        id: 2,
+        path: "qt01"
+      },
+      {
+        name: "前堂2",
+        id: 4,
+        path: "qt03"
+      },
+      {
+        name: "包间1",
+        id: 5,
+        path: "bj01"
+      },
+      {
+        name: "前门",
+        id: 6,
+        path: "qm01"
+      }
+    ]
   },
 
   {
@@ -89,7 +155,7 @@ const arr = [
     footType: 1,
     area: 80,
     score: 3.7,
-    diviceNum: 4,
+    diviceNum: 5,
     complaint: 62,
     inspect: 132,
     alarmNum: 20,
@@ -106,9 +172,37 @@ const arr = [
     coverType: 1,
     mapArea: "",
     alarmType: 2,
-    lng: 114.062013,
-    lat: 22.525705,
+    lng: lnglat.lng03,
+    lat: lnglat.lat03,
     remark: "餐馆装修精美，食材新鲜，味道不错",
+
+    deviceList: [
+      {
+        name: "后厨",
+        id: 1,
+        path: "hc02"
+      },
+      {
+        name: "前堂1",
+        id: 2,
+        path: "qt01"
+      },
+      {
+        name: "前堂2",
+        id: 4,
+        path: "qt02"
+      },
+      {
+        name: "包间1",
+        id: 5,
+        path: "bj02"
+      },
+      {
+        name: "前门",
+        id: 6,
+        path: "qm01"
+      }
+    ]
   },
 
   {
@@ -135,10 +229,47 @@ const arr = [
     coverType: 1,
     alarmType: 3,
     mapArea: "",
-    lng: 114.062408,
-    lat: 22.522737,
+    lng: lnglat.lng04,
+    lat: lnglat.lat04,
     remark: "餐馆面积大，服务态度好",
-  },
+    deviceList: [
+      {
+        name: "后厨",
+        id: 1,
+        path: "hc02"
+      },
+      {
+        name: "前堂1",
+        id: 2,
+        path: "qt01"
+      },
+      {
+        name: "前堂2",
+        id: 4,
+        path: "qt03"
+      },
+      {
+        name: "前堂3",
+        id: 4,
+        path: "qt04"
+      },
+      {
+        name: "包间1",
+        id: 5,
+        path: "bj01"
+      },
+      {
+        name: "包间2",
+        id: 5,
+        path: "bj02"
+      },
+      {
+        name: "前门",
+        id: 6,
+        path: "qm01"
+      }
+    ]
+  }
 ];
 
-export default { dataList: arr, mapCoverType: 1 };
+export default { dataList: arr, mapCoverType: 1, dataType: 1 };

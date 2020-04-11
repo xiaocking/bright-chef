@@ -56,8 +56,8 @@ import Complaint from "./dataIndexTem/complaint_tem.vue";
 import Score from "./dataIndexTem/score_tem.vue";
 import Inspect from "./dataIndexTem/inspect_tem.vue";
 import Meals from "./dataIndexTem/meals_tem.vue";
-import Person from "./dataIndexTem/person.vue";
-import Device from "./dataIndexTem/device.vue";
+import Person from "./dataIndexTem/person_tem.vue";
+import Device from "./dataIndexTem/device_tem.vue";
 
 interface Idata {
 	time: string;
