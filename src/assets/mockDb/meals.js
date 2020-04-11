@@ -19,9 +19,8 @@ import lnglat from "./lnglat.js";
  *  3 面
  *
  * alarmType
- *  1 正常
- *  2 一般
- *  3 告警
+ *  1 未告警
+ *  2 告警
  *
  */
 const arr = [
@@ -33,6 +32,7 @@ const arr = [
     area: 100,
     score: 3.2,
     diviceNum: 7,
+    deviceType: 1,
     complaint: 47,
     inspect: 102,
     alarmNum: 41,
@@ -56,39 +56,47 @@ const arr = [
       {
         name: "后厨",
         id: 1,
+        deviceType: 1,
         path: "hc01"
       },
       {
         name: "前堂1",
         id: 2,
+        deviceType: 1,
         path: "qt01"
       },
       {
         name: "前堂2",
         id: 3,
+        deviceType: 1,
         path: "qt04"
       },
       {
         name: "前堂3",
         id: 4,
+        deviceType: 1,
         path: "qt03"
       },
       {
         name: "包间1",
         id: 5,
+        deviceType: 1,
         path: "bj01"
       },
       {
         name: "包间2",
-        id: 5,
+        id: 6,
+        deviceType: 1,
         path: "bj02"
       },
       {
         name: "前门",
-        id: 6,
+        id: 7,
+        deviceType: 1,
         path: "qm01"
       }
-    ]
+    ],
+    inspectType: 1
   },
 
   {
@@ -99,6 +107,7 @@ const arr = [
     area: 120,
     score: 3.9,
     diviceNum: 5,
+    deviceType: 2,
     complaint: 84,
     inspect: 121,
     alarmNum: 20,
@@ -123,29 +132,35 @@ const arr = [
       {
         name: "后厨",
         id: 1,
-        path: "hc02"
+        deviceType: 1,
+        path: "hc01"
       },
       {
         name: "前堂1",
         id: 2,
+        deviceType: 1,
         path: "qt01"
       },
       {
         name: "前堂2",
-        id: 4,
+        id: 3,
+        deviceType: 1,
         path: "qt03"
       },
       {
         name: "包间1",
-        id: 5,
+        id: 4,
+        deviceType: 1,
         path: "bj01"
       },
       {
         name: "前门",
-        id: 6,
+        id: 5,
+        deviceType: 1,
         path: "qm01"
       }
-    ]
+    ],
+    inspectType: 2
   },
 
   {
@@ -156,6 +171,7 @@ const arr = [
     area: 80,
     score: 3.7,
     diviceNum: 5,
+    deviceType: 3,
     complaint: 62,
     inspect: 132,
     alarmNum: 20,
@@ -180,29 +196,35 @@ const arr = [
       {
         name: "后厨",
         id: 1,
-        path: "hc02"
+        deviceType: 1,
+        path: "hc01"
       },
       {
         name: "前堂1",
         id: 2,
+        deviceType: 1,
         path: "qt01"
       },
       {
         name: "前堂2",
-        id: 4,
+        id: 3,
+        deviceType: 1,
         path: "qt02"
       },
       {
         name: "包间1",
-        id: 5,
+        id: 4,
+        deviceType: 1,
         path: "bj02"
       },
       {
         name: "前门",
-        id: 6,
+        id: 5,
+        deviceType: 1,
         path: "qm01"
       }
-    ]
+    ],
+    inspectType: 3
   },
 
   {
@@ -213,6 +235,7 @@ const arr = [
     area: 130,
     score: 4.2,
     diviceNum: 8,
+    deviceType: 4,
     complaint: 55,
     inspect: 141,
     alarmNum: 20,
@@ -227,7 +250,7 @@ const arr = [
     HealthPermitImgId: "004",
     address: "宝能科技园A座16楼",
     coverType: 1,
-    alarmType: 3,
+    alarmType: 1,
     mapArea: "",
     lng: lnglat.lng04,
     lat: lnglat.lat04,
@@ -236,40 +259,49 @@ const arr = [
       {
         name: "后厨",
         id: 1,
-        path: "hc02"
+        deviceType: 1,
+        path: "hc01"
       },
       {
         name: "前堂1",
         id: 2,
+        deviceType: 1,
         path: "qt01"
       },
       {
         name: "前堂2",
         id: 4,
+        deviceType: 1,
         path: "qt03"
       },
       {
         name: "前堂3",
-        id: 4,
+        id: 5,
+        deviceType: 1,
         path: "qt04"
       },
       {
         name: "包间1",
-        id: 5,
+        id: 6,
+        deviceType: 1,
         path: "bj01"
       },
       {
         name: "包间2",
-        id: 5,
+        id: 7,
+        deviceType: 1,
         path: "bj02"
       },
       {
         name: "前门",
-        id: 6,
+        id: 8,
+        deviceType: 1,
         path: "qm01"
       }
-    ]
+    ],
+    inspectType: 1
   }
 ];
 
-export default { dataList: arr, mapCoverType: 1, dataType: 1 };
+// export default { dataList: arr, mapCoverType: 1, dataType: 1 };
+export default arr;

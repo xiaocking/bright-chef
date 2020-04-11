@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<MyDialog width="980px" :title="detailsInfo.name" @closeDialog="closeDialog">
+		<MyDialog width="1000px" :title="detailsInfo.name" @closeDialog="closeDialog">
 			<div class="Details">
 				<div
 					class="details-item"

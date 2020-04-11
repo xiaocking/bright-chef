@@ -10,18 +10,14 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 const myStoreModel = namespace("myStore");
 
-import Map from "../gisMap_tem.vue";
-import coverData from "../../../../../assets/mockDb/devices.js";
 import Details from "./details_tem.vue";
 
 @Component({
 	components: {
-		Map,
 		Details
 	}
 })
 export default class GisMeals extends Vue {
-	private coverData = coverData;
 	private DetailsFlag = false;
 	private detailsInfo!: object;
 
@@ -43,8 +39,6 @@ export default class GisMeals extends Vue {
 		this.DetailsFlag = false;
 	}
 
-	@myStoreModel.Mutation("setMapCoverInfo") setMapCoverInfo;
-
 	@myStoreModel.State("mapClickInfo") mapClickInfo: undefined;
 	@Watch("mapClickInfo", { immediate: true, deep: true })
 	mapClickChange(val) {
@@ -61,10 +55,6 @@ export default class GisMeals extends Vue {
 		if (val) {
 			this.showDetails(val);
 		}
-	}
-
-	mounted() {
-		this.setMapCoverInfo(this.coverData);
 	}
 }
 </script>

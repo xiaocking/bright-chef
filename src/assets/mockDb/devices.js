@@ -44,4 +44,5 @@ const arr = [
   }
 ];
 
-export default { dataList: arr, mapCoverType: 1, dataType: 2 };
+// export default { dataList: arr, mapCoverType: 1, dataType: 2 };
+export default arr;

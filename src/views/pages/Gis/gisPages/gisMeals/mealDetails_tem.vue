@@ -56,7 +56,7 @@
 				<el-row class="content-item" :gutter="20">
 					<el-col :span="12">
 						<span class="s1">餐厅类别：</span>
-						<span class="s2">{{ detailsInfo.footType == 1? '西餐' :'中餐' }}</span>
+						<span class="s2">{{ detailsInfo.footType == 1? '中餐' :'西餐' }}</span>
 					</el-col>
 					<el-col :span="12">
 						<span class="s1">餐厅面积：</span>
@@ -151,8 +151,6 @@ export default class MealDetails extends Vue {
 	closeDialog(e) {
 		return e;
 	}
-
-	mountd() {}
 }
 </script>
 

@@ -10,22 +10,14 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 const myStoreModel = namespace("myStore");
 
-import Map from "../gisMap_tem.vue";
-
-import coverData from "../../../../../assets/mockDb/meals.js";
-
 @Component({
 	components: {
-		Map,
 		Details: () => import("./mealDetails_tem.vue")
 	}
 })
 export default class GisMeals extends Vue {
-	private coverData = coverData;
 	private DetailsFlag = false;
 	private detailsInfo!: object;
-
-	@myStoreModel.Mutation("setMapCoverInfo") setMapCoverInfo;
 
 	private mapClick(e: MouseEvent) {
 		console.log("地图点击", e);
@@ -61,10 +53,6 @@ export default class GisMeals extends Vue {
 		if (val) {
 			this.showDetails(val);
 		}
-	}
-
-	mounted() {
-		this.setMapCoverInfo(this.coverData);
 	}
 }
 </script>

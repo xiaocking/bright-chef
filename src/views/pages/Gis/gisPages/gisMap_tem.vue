@@ -10,6 +10,14 @@ import { namespace } from "vuex-class";
 const myStoreModel = namespace("myStore");
 
 import amapInit from "../../../../lib/amapInit.js";
+import mealsData from "../../../../assets/mockDb/meals.js";
+import mapIcon from "./../js/icon.js";
+
+interface IdeviceInfo {
+	name: string;
+	id: number;
+	path: string;
+}
 
 interface ImealsDataObj {
 	name: string;
@@ -37,6 +45,9 @@ interface ImealsDataObj {
 	lng: number;
 	lat: number;
 	remark: string;
+	deviceList: IdeviceInfo[];
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[a: string]: any;
 }
 
 interface IdataListObj {
@@ -59,6 +70,10 @@ window.AMap = window.AMap || null;
 
 @Component
 export default class GisPage extends Vue {
+	get mapData() {
+		return mealsData;
+	}
+
 	private map: Window["AMap"];
 	private zoNingPloygen: Array<Window["AMap"]["Polygon"]> = [];
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,54 +97,94 @@ export default class GisPage extends Vue {
 	@Watch("mapCoverInfo", { deep: true })
 	showDataChange(val) {
 		// 覆盖物显示
-		if (val) {
-			this.addCover(val);
-		} else {
-			console.log("覆盖物显示error", val);
-		}
+		console.log("覆盖物显示", val);
 	}
 
 	@myStoreModel.State("actGisNavIndex") actGisNavIndex;
-	@Watch("actGisNavIndex", { deep: true })
+	@Watch("actGisNavIndex")
 	actGisNavIndexChange() {
 		// 菜单点击时
 		this.clearCover();
-		this.addCover(this.mapCoverInfo);
+		this.showCover();
 	}
 
-	private addCover(data: IshowData) {
-		// 添加覆盖物
-		if (
-			!data.dataList ||
-			data.dataList.length <= 0 ||
-			data.dataType != this.actGisNavIndex
-		) {
-			return false;
-		}
-		if (data.mapCoverType == 1) {
-			for (const val of data.dataList) {
-				this.addPoint(val);
-			}
-		} else if (data.mapCoverType == 2) {
-			for (const val of data.dataList) {
-				this.addLine(val);
-			}
-		} else if (data.mapCoverType == 3) {
-			for (const val of data.dataList) {
-				this.addArea(val);
-			}
-		} else {
-			console.log("添加覆盖物error", data);
+	showCover() {
+		if (this.actGisNavIndex == 1) {
+			// 餐馆
+			this.showMealsCover();
+		} else if (this.actGisNavIndex == 2) {
+			// 摄像头
+			this.showDevicesCover();
+		} else if (this.actGisNavIndex == 3) {
+			// 告警
+			this.showAlarmCover();
+		} else if (this.actGisNavIndex == 4) {
+			// 自检自查
+			this.showInspectCover();
 		}
 	}
 
-	private addPoint(val) {
+	showMealsCover() {
+		// 显示餐馆
+		for (const val of this.mapData) {
+			const icon = mapIcon.meals["footType0" + val.footType];
+			this.addPoint(val, icon);
+		}
+	}
+
+	showDevicesCover() {
+		// 显示设备
+		for (const val of this.mapData) {
+			const icon = mapIcon.devices["deviceType0" + val.deviceType];
+
+			this.addPoint(val, icon);
+		}
+	}
+
+	showAlarmCover() {
+		// 显示告警
+		for (const val of this.mapData) {
+			const icon = mapIcon.alarm["alarmType0" + val.alarmType];
+
+			this.addPoint(val, icon);
+		}
+	}
+
+	showInspectCover() {
+		// 显示自检自查
+		for (const val of this.mapData) {
+			const icon = mapIcon.inspect["inspectType0" + val.inspectType];
+
+			this.addPoint(val, icon);
+		}
+	}
+
+	// private addCover(data) {
+	// 	// 添加覆盖物
+	// 	if (data.mapCoverType == 1) {
+	// 		for (const val of data.dataList) {
+	// 			this.addPoint(val);
+	// 		}
+	// 	} else if (data.mapCoverType == 2) {
+	// 		for (const val of data.dataList) {
+	// 			this.addLine(val);
+	// 		}
+	// 	} else if (data.mapCoverType == 3) {
+	// 		for (const val of data.dataList) {
+	// 			this.addArea(val);
+	// 		}
+	// 	} else {
+	// 		console.log("添加覆盖物error", data);
+	// 	}
+	// }
+
+	private addPoint(val, icon = "大中餐馆图标") {
 		// 添加点
 		if (val.coverType == 1) {
 			// 创建一个 icon
 			const markerIcon = new window.AMap.Icon({
 				size: new window.AMap.Size(24, 29),
-				image: require("../../../../assets/navIcon/大西餐馆图标.png"),
+				image: require("../../../../assets/mapIcon/" + icon + ".png"),
 				imageSize: new window.AMap.Size(24, 29)
 				// imageOffset: new window.AMap.Pixel(-24, 10)
 			});
@@ -209,9 +264,7 @@ export default class GisPage extends Vue {
 
 		this.pluginInit(AMap); // 加载地图插件
 		this.addClick(); // 地图绑定点击事件
-		if (this.mapCoverInfo) {
-			this.addCover(this.mapCoverInfo); // 展示地图数据信息
-		}
+		this.showCover(); // 展示地图数据信息
 	}
 
 	private pluginInit(AMap) {
