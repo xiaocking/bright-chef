@@ -18,8 +18,9 @@ export default {
     deviceType05: "花点"
   },
   alarm: {
-    alarmType01: "告警",
-    alarmType02: "未告警"
+    alarmType01: "未告警",
+    alarmType02: "告警",
+    alarmType03: "告警"
   },
   inspect: {
     inspectType01: "已检",

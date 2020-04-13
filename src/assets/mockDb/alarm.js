@@ -1,32 +1,154 @@
-const arr = [
-  {
-    name: "一品红川菜",
-    id: 1,
-    eatType: 2,
-    footType: 1,
-    area: 100,
-    score: 3.2,
-    diviceNum: 5,
-    complaint: 47,
-    inspect: 102,
-    alarmNum: 41,
-    personNum: 15,
-    cooker: 6,
-    waiter: 8,
-    leaderName: "华丽",
-    leaderTel: 13512313211,
-    sex: "男",
-    outPerseon: 0,
-    businessLicenseImgId: "001", // 营业执照
-    HealthPermitImgId: "002", // 卫生许可证
-    address: "宝能科技园A座17楼",
-    coverType: 1,
-    mapArea: "",
-    alarmType: 2,
-    lng: 114.061965,
-    lat: 22.524376,
-    remark: "川菜馆，菜偏辣"
-  }
-];
+/**
+ * dealType 处理状态
+ *  1 未处理
+ *  2 处理中
+ *  3 已处理
+ *
+ * alarmType 告警类型
+ *  1 体温超标
+ *  2 活杀
+ *  3 野生
+ *  4 口罩
+ *  5 衣帽
+ *  6 工衣
+ *
+ */
 
-export default { dataList: arr, mapCoverType: 1, dataType: 3 };
+const dataObj = {
+  1: {
+    real: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-6 16:30:30",
+        dealType: 1,
+        dealTypeName: "未处理",
+        dealTime: "",
+        dealEasesure: "",
+        remark: "未带口罩"
+      }
+    ],
+    history: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-5 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-5 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      }
+    ]
+  },
+  2: {
+    real: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-6 16:30:30",
+        dealType: 1,
+        dealTypeName: "未处理",
+        dealTime: "",
+        dealEasesure: "",
+        remark: "未带口罩"
+      }
+    ],
+    history: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-5 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-5 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      },
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-4 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-4 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      }
+    ]
+  },
+  3: {
+    real: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-6 16:30:30",
+        dealType: 1,
+        dealTypeName: "未处理",
+        dealTime: "",
+        dealEasesure: "",
+        remark: "未带口罩"
+      }
+    ],
+    history: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-5 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-5 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      },
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-4 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-4 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      }
+    ]
+  },
+  4: {
+    real: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-6 16:30:30",
+        dealType: 1,
+        dealTypeName: "未处理",
+        dealTime: "",
+        dealEasesure: "",
+        remark: "未带口罩"
+      }
+    ],
+    history: [
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-5 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-5 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      },
+      {
+        name: "",
+        alarmType: 2,
+        alarmTime: "2020-3-4 16:30:30",
+        dealType: 2,
+        dealTypeName: "已处理",
+        dealTime: "2020-3-4 16:38:26",
+        dealEasesure: "通知负责人让员工佩戴口罩",
+        remark: "未带口罩"
+      }
+    ]
+  }
+};
+
+export default dataObj;

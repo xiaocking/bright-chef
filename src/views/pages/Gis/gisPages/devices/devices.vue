@@ -11,6 +11,7 @@ import { namespace } from "vuex-class";
 const myStoreModel = namespace("myStore");
 
 import Details from "./details_tem.vue";
+import detailsInfo from "../../../../../assets/mockDb/devices.js";
 
 @Component({
 	components: {
@@ -31,7 +32,9 @@ export default class GisMeals extends Vue {
 	}
 
 	private showDetails(e) {
-		this.detailsInfo = e;
+		const obj = { ...e };
+		obj.deviceList = detailsInfo[e.id];
+		this.detailsInfo = obj;
 		this.DetailsFlag = true;
 	}
 

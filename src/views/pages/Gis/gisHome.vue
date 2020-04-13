@@ -53,12 +53,11 @@ export default class GisPage extends Vue {
 	position: relative;
 	.GisHomeContent {
 		height: 0;
-		// height: 100%;
-		// height: 0;
-		// position: absolute;
-		// left: 0;
-		// top: 0;
-		// z-index: 1;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+		width: 100%;
 	}
 	.gisBox {
 		height: 100%;

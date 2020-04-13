@@ -19,8 +19,9 @@ import lnglat from "./lnglat.js";
  *  3 面
  *
  * alarmType
- *  1 未告警
- *  2 告警
+ *  1 未处理
+ *  2 处理中
+ *  2 已处理
  *
  */
 const arr = [
@@ -52,55 +53,11 @@ const arr = [
     lng: lnglat.lng01,
     lat: lnglat.lat01,
     remark: "川菜馆，菜偏辣",
-    deviceList: [
-      {
-        name: "后厨",
-        id: 1,
-        deviceType: 1,
-        path: "hc01"
-      },
-      {
-        name: "前堂1",
-        id: 2,
-        deviceType: 1,
-        path: "qt01"
-      },
-      {
-        name: "前堂2",
-        id: 3,
-        deviceType: 1,
-        path: "qt04"
-      },
-      {
-        name: "前堂3",
-        id: 4,
-        deviceType: 1,
-        path: "qt03"
-      },
-      {
-        name: "包间1",
-        id: 5,
-        deviceType: 1,
-        path: "bj01"
-      },
-      {
-        name: "包间2",
-        id: 6,
-        deviceType: 1,
-        path: "bj02"
-      },
-      {
-        name: "前门",
-        id: 7,
-        deviceType: 1,
-        path: "qm01"
-      }
-    ],
     inspectType: 1
   },
 
   {
-    name: "陕西粉面馆",
+    name: "陕西粉面馆111111111111111111111111111111111111111111111",
     id: 2,
     eatType: 1,
     footType: 1,
@@ -127,39 +84,6 @@ const arr = [
     lng: lnglat.lng02,
     lat: lnglat.lat02,
     remark: "陕西风味粉面馆，粉面味道很棒",
-
-    deviceList: [
-      {
-        name: "后厨",
-        id: 1,
-        deviceType: 1,
-        path: "hc01"
-      },
-      {
-        name: "前堂1",
-        id: 2,
-        deviceType: 1,
-        path: "qt01"
-      },
-      {
-        name: "前堂2",
-        id: 3,
-        deviceType: 1,
-        path: "qt03"
-      },
-      {
-        name: "包间1",
-        id: 4,
-        deviceType: 1,
-        path: "bj01"
-      },
-      {
-        name: "前门",
-        id: 5,
-        deviceType: 1,
-        path: "qm01"
-      }
-    ],
     inspectType: 2
   },
 
@@ -191,39 +115,6 @@ const arr = [
     lng: lnglat.lng03,
     lat: lnglat.lat03,
     remark: "餐馆装修精美，食材新鲜，味道不错",
-
-    deviceList: [
-      {
-        name: "后厨",
-        id: 1,
-        deviceType: 1,
-        path: "hc01"
-      },
-      {
-        name: "前堂1",
-        id: 2,
-        deviceType: 1,
-        path: "qt01"
-      },
-      {
-        name: "前堂2",
-        id: 3,
-        deviceType: 1,
-        path: "qt02"
-      },
-      {
-        name: "包间1",
-        id: 4,
-        deviceType: 1,
-        path: "bj02"
-      },
-      {
-        name: "前门",
-        id: 5,
-        deviceType: 1,
-        path: "qm01"
-      }
-    ],
     inspectType: 3
   },
 
@@ -250,55 +141,11 @@ const arr = [
     HealthPermitImgId: "004",
     address: "宝能科技园A座16楼",
     coverType: 1,
-    alarmType: 1,
+    alarmType: 3,
     mapArea: "",
     lng: lnglat.lng04,
     lat: lnglat.lat04,
     remark: "餐馆面积大，服务态度好",
-    deviceList: [
-      {
-        name: "后厨",
-        id: 1,
-        deviceType: 1,
-        path: "hc01"
-      },
-      {
-        name: "前堂1",
-        id: 2,
-        deviceType: 1,
-        path: "qt01"
-      },
-      {
-        name: "前堂2",
-        id: 4,
-        deviceType: 1,
-        path: "qt03"
-      },
-      {
-        name: "前堂3",
-        id: 5,
-        deviceType: 1,
-        path: "qt04"
-      },
-      {
-        name: "包间1",
-        id: 6,
-        deviceType: 1,
-        path: "bj01"
-      },
-      {
-        name: "包间2",
-        id: 7,
-        deviceType: 1,
-        path: "bj02"
-      },
-      {
-        name: "前门",
-        id: 8,
-        deviceType: 1,
-        path: "qm01"
-      }
-    ],
     inspectType: 1
   }
 ];

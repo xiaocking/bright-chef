@@ -28,6 +28,7 @@ interface Idevic {
 	name: string;
 	id: number;
 	path: string;
+	deviceType: number;
 	[a: string]: number | string;
 }
 
@@ -51,7 +52,8 @@ export default class MealDetails extends Vue {
 	private srcData: Idevic = {
 		name: "1",
 		id: 1,
-		path: "qt01"
+		path: "qt01",
+		deviceType: 1
 	};
 
 	private closeDeviceDialog() {

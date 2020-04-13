@@ -22,7 +22,7 @@ interface IdeviceInfo {
 interface ImealsDataObj {
 	name: string;
 	id: number;
-	area: 100;
+	area: number;
 	score: number;
 	diviceNum: number;
 	complaint: number;
@@ -34,7 +34,7 @@ interface ImealsDataObj {
 	cooker: number;
 	waiter: number;
 	leaderName: string;
-	leaderTel: string;
+	leaderTel: number;
 	sex: string;
 	outPerseon: number;
 	businessLicenseImgId: string;
@@ -45,7 +45,6 @@ interface ImealsDataObj {
 	lng: number;
 	lat: number;
 	remark: string;
-	deviceList: IdeviceInfo[];
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[a: string]: any;
 }
