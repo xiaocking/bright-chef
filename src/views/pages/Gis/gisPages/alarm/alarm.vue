@@ -1,8 +1,16 @@
 <template>
 	<div class="gisBox alarm">
-		<Details v-if="DetailsFlag" @closeDialog="hideDialog" :detailsInfo="detailsInfo"></Details>
+		<component
+			:is="isModel"
+			v-if="DetailsFlag"
+			@closeDialog="hideDialog"
+			@changeModel="changeModel"
+			@getCoverData="getCoverData"
+			:detailsInfo="detailsInfo"
+		></component>
+
 		<div class="alarmList">
-			<h2 class="h2_tit">告警列表</h2>
+			<h2 class="h2_tit" @click="addAlarm">告警列表+</h2>
 			<div class="alarmList-item" v-for="item in realAlarm" :key="item.id" @click="showDetails(item)">
 				<p class="item-tit">{{ item.name }}</p>
 			</div>
@@ -18,8 +26,9 @@ const myStoreModel = namespace("myStore");
 import Map from "../gisMap_tem.vue";
 
 import coverData from "../../../../../assets/mockDb/meals.js";
-import details from "../../../../../assets/mockDb/alarm.js"
-
+import details from "../../../../../assets/mockDb/alarm.js";
+import tools from "../../../../../lib/tools.js";
+import lnglat from "../../../../../assets/mockDb/lnglat.js";
 
 interface ImealsDataObj {
 	name: string;
@@ -51,27 +60,121 @@ interface ImealsDataObj {
 	[a: string]: any;
 }
 
+interface IdetailsObj {
+	name: string;
+	alarmType: number;
+	alarmTime: string;
+	dealType: number;
+	id: number;
+	dealTypeName: string;
+	dealTime: string;
+	dealEasesure: string;
+	personId: number;
+	remark: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[prop: string]: any;
+}
+
+interface Idetails {
+	[prop: string]: IdetailsObj[];
+}
+
 @Component({
 	components: {
 		Map,
-		Details: () => import("./details_tem.vue")
+		Details: () => import("./details_tem.vue"),
+		Deal: () => import("./deal_tem.vue")
 	}
 })
-export default class GisMeals extends Vue {
-	private coverData = coverData;
+export default class GisAlarm extends Vue {
 	private DetailsFlag = false;
-	private detailsInfo: ImealsDataObj | undefined;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	private detailsInfo: any;
 	private realAlarm: ImealsDataObj[] = [];
+	private isModel = "Details";
+	private coverData: ImealsDataObj[] = [];
+	private alarmDetails: Idetails = {};
+	private num = 100;
 
 	private showDetails(e) {
-		const obj = {...e}
-		obj.alarmList = details[e.id];
+		const obj = { ...e };
+		this.getAlarmDetails();
+		obj.alarmList = this.alarmDetails[e.id];
 		this.detailsInfo = obj;
+		this.isModel = "Details";
 		this.DetailsFlag = true;
 	}
 
+	private changeModel(arr) {
+		this.DetailsFlag = false;
+		this.detailsInfo = arr;
+		this.isModel = "Deal";
+		this.DetailsFlag = true;
+	}
+
+	private addAlarm() {
+		// 手动添加告警
+		const time = tools.dateFormat();
+		let num = 11;
+		this.getAlarmDetails();
+		if (sessionStorage.alarmId) {
+			num = sessionStorage.alarmId;
+		}
+		this.alarmDetails[2].unshift({
+			name: "",
+			alarmType: 4,
+			alarmTime: time,
+			dealType: 1,
+			id: num++,
+			dealTypeName: "未处理",
+			dealTime: "",
+			dealEasesure: "",
+			personId: 2,
+			remark: "口罩未佩戴或佩戴不正确"
+		});
+		sessionStorage.alarmDetails = JSON.stringify(this.alarmDetails);
+		sessionStorage.alarmId = num;
+		this.coverData.splice(1, 1, {
+			name: "陕西粉面馆",
+			id: 2,
+			eatType: 1,
+			footType: 1,
+			area: 120,
+			score: 3.9,
+			diviceNum: 5,
+			deviceType: 2,
+			complaint: 84,
+			inspect: 121,
+			alarmNum: 20,
+			personNum: 10,
+			cooker: 3,
+			waiter: 3,
+			leaderName: "华丽",
+			leaderTel: 13512313211,
+			sex: "男",
+			outPerseon: 4,
+			businessLicenseImgId: "003",
+			HealthPermitImgId: "004",
+			address: "宝能科技园A座16楼",
+			coverType: 1,
+			mapArea: "",
+			alarmType: 1,
+			lng: lnglat.lng02,
+			lat: lnglat.lat02,
+			remark: "陕西风味粉面馆，粉面味道很棒",
+			inspectType: 2
+		});
+		sessionStorage.coverData = JSON.stringify(this.coverData);
+		this.init();
+		this.setMapCoverInfo();
+	}
+
+	@myStoreModel.Mutation("setMapCoverInfo") setMapCoverInfo;
+
+	@myStoreModel.Mutation("clearGisCoverInfo") clearGisCoverInfo;
 	private hideDialog() {
 		this.DetailsFlag = false;
+		this.clearGisCoverInfo();
 	}
 
 	@myStoreModel.State("mapClickInfo") mapClickInfo;
@@ -92,16 +195,36 @@ export default class GisMeals extends Vue {
 		}
 	}
 
+	getAlarmDetails() {
+		if (sessionStorage.alarmDetails) {
+			this.alarmDetails = JSON.parse(sessionStorage.alarmDetails);
+		} else {
+			sessionStorage.alarmDetails = JSON.stringify(details);
+			this.alarmDetails = details;
+		}
+	}
+
+	private getCoverData() {
+		if (sessionStorage.coverData) {
+			// 获取缓存中的数据
+			this.coverData = JSON.parse(sessionStorage.coverData);
+		} else {
+			sessionStorage.coverData = JSON.stringify(coverData);
+			this.coverData = coverData;
+		}
+		this.init();
+	}
+
 	private init() {
+		this.realAlarm = [];
 		for (const val of this.coverData) {
 			if (val.alarmType === 1 || val.alarmType === 2) {
 				this.realAlarm.push(val);
 			}
 		}
 	}
-
-	mounted() {
-		this.init()
+	created() {
+		this.getCoverData();
 	}
 }
 </script>
@@ -119,26 +242,27 @@ export default class GisMeals extends Vue {
 			margin-bottom: 15px;
 		}
 		position: absolute;
-    width: 160px;
-    top: 20vh;
-    right: 0;
-    background: #fff;
-		padding:10px 15px 15px 15px;
-		cursor: pointer;
-		.alarmList-item{
+		width: 160px;
+		top: 20vh;
+		right: 0;
+		background: #fff;
+		padding: 10px 15px 15px 15px;
+
+		.alarmList-item {
 			color: $red-color;
 			margin-bottom: 10px;
-			
+			cursor: pointer;
 			.item-tit {
-				white-space: nowrap;overflow: hidden; text-overflow: ellipsis;
-			width: 130px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 130px;
 			}
 			&:hover {
-			text-decoration: underline;
-			color: $color;
+				text-decoration: underline;
+				color: $error-color;
 			}
 		}
-		
 	}
 }
 </style>

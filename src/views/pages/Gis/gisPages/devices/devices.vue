@@ -18,7 +18,7 @@ import detailsInfo from "../../../../../assets/mockDb/devices.js";
 		Details
 	}
 })
-export default class GisMeals extends Vue {
+export default class GisDevices extends Vue {
 	private DetailsFlag = false;
 	private detailsInfo!: object;
 
@@ -38,8 +38,10 @@ export default class GisMeals extends Vue {
 		this.DetailsFlag = true;
 	}
 
+	@myStoreModel.Mutation("clearGisCoverInfo") clearGisCoverInfo;
 	private hideDialog() {
 		this.DetailsFlag = false;
+		this.clearGisCoverInfo();
 	}
 
 	@myStoreModel.State("mapClickInfo") mapClickInfo: undefined;

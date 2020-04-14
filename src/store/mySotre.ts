@@ -29,14 +29,19 @@ const mutations = {
     state.coverClickInfo = undefined;
     state.actGisNavIndex = num;
   },
+  clearGisCoverInfo(state) {
+    state.mapCoverInfo = undefined;
+    state.mapClickInfo = undefined;
+    state.coverClickInfo = undefined;
+  },
   changeMapClickInfo(state, obj) {
     state.mapClickInfo = obj;
   },
   changeCoverClickInfo(state, obj) {
     state.coverClickInfo = obj;
   },
-  setMapCoverInfo(state, obj) {
-    state.mapCoverInfo = obj;
+  setMapCoverInfo(state) {
+    state.mapCoverInfo = new Date().getTime();
   }
 };
 

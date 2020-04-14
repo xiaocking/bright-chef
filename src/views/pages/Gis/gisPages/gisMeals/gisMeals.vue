@@ -33,8 +33,10 @@ export default class GisMeals extends Vue {
 		this.DetailsFlag = true;
 	}
 
+	@myStoreModel.Mutation("clearGisCoverInfo") clearGisCoverInfo;
 	private hideDialog() {
 		this.DetailsFlag = false;
+		this.clearGisCoverInfo();
 	}
 
 	@myStoreModel.State("mapClickInfo") mapClickInfo: undefined;

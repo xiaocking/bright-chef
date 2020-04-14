@@ -69,8 +69,15 @@ window.AMap = window.AMap || null;
 
 @Component
 export default class GisPage extends Vue {
-	get mapData() {
-		return mealsData;
+	private mapData: ImealsDataObj[] = [];
+
+	getMapData() {
+		if (sessionStorage.coverData) {
+			this.mapData = JSON.parse(sessionStorage.coverData);
+		} else {
+			sessionStorage.coverData = JSON.stringify(mealsData);
+			this.mapData = JSON.parse(JSON.stringify(mealsData));
+		}
 	}
 
 	private map: Window["AMap"];
@@ -96,13 +103,19 @@ export default class GisPage extends Vue {
 	@Watch("mapCoverInfo", { deep: true })
 	showDataChange(val) {
 		// 覆盖物显示
-		console.log("覆盖物显示", val);
+		if (val) {
+			console.log("修改覆盖物数据");
+			this.getMapData();
+			this.clearCover();
+			this.showCover();
+		}
 	}
 
 	@myStoreModel.State("actGisNavIndex") actGisNavIndex;
 	@Watch("actGisNavIndex")
 	actGisNavIndexChange() {
 		// 菜单点击时
+		this.getMapData();
 		this.clearCover();
 		this.showCover();
 	}
@@ -353,7 +366,9 @@ export default class GisPage extends Vue {
 			console.log("取消地图点击事件");
 		});
 	}
-
+	created() {
+		this.getMapData();
+	}
 	mounted() {
 		if (window.AMap) {
 			this.mapInit(window.AMap);

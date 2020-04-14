@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 // 工具集
-import myAxiox from "../config/axiosConfig";
+// import myAxiox from "../config/axiosConfig.js";
 
 function setCookie(c_name, value, expire) {
   // expire 单位秒 cookie过期时间 传入为秒 计算后为当前时间多少秒后过期
@@ -66,35 +66,34 @@ function dateFormat(date, fmt) {
 
 function downloadExcel(url, params = {}) {
   // 下载excel文档流
-  myAxiox
-    .post(url, params, {
-      responseType: "blob"
-    })
-    .then(response => {
-      // 下载excel
-      const str = response.headers["content-disposition"];
-      const search = "filename=";
-      const start = str.indexOf(search); //获得字符串的开始位置
-      const URInfo = str.substring(start + search.length); //截取字符串
-
-      const content = response.data;
-      const blob = new Blob([content]);
-      const fileName = decodeURIComponent(URInfo); // url解码
-      if ("download" in document.createElement("a")) {
-        // 非IE下载
-        const elink = document.createElement("a");
-        elink.download = fileName;
-        elink.style.display = "none";
-        elink.href = URL.createObjectURL(blob);
-        document.body.appendChild(elink);
-        elink.click();
-        URL.revokeObjectURL(elink.href); // 释放URL 对象
-        document.body.removeChild(elink);
-      } else {
-        // IE10+下载
-        navigator.msSaveBlob(blob, fileName);
-      }
-    });
+  // myAxiox
+  //   .post(url, params, {
+  //     responseType: "blob"
+  //   })
+  //   .then(response => {
+  //     // 下载excel
+  //     const str = response.headers["content-disposition"];
+  //     const search = "filename=";
+  //     const start = str.indexOf(search); //获得字符串的开始位置
+  //     const URInfo = str.substring(start + search.length); //截取字符串
+  //     const content = response.data;
+  //     const blob = new Blob([content]);
+  //     const fileName = decodeURIComponent(URInfo); // url解码
+  //     if ("download" in document.createElement("a")) {
+  //       // 非IE下载
+  //       const elink = document.createElement("a");
+  //       elink.download = fileName;
+  //       elink.style.display = "none";
+  //       elink.href = URL.createObjectURL(blob);
+  //       document.body.appendChild(elink);
+  //       elink.click();
+  //       URL.revokeObjectURL(elink.href); // 释放URL 对象
+  //       document.body.removeChild(elink);
+  //     } else {
+  //       // IE10+下载
+  //       navigator.msSaveBlob(blob, fileName);
+  //     }
+  //   });
 }
 
-exports = { setCookie, getCookie, delCookie, dateFormat, downloadExcel };
+export default { setCookie, getCookie, delCookie, dateFormat, downloadExcel };

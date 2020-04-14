@@ -14,7 +14,7 @@
 		<div :style="{'height':myHeight,'max-height':myMaxHeight }" class="overflowCss">
 			<slot></slot>
 		</div>
-		<div slot="footer" class="dialog-footer">
+		<div v-if="showClose" slot="footer" class="dialog-footer">
 			<slot name="footer"></slot>
 			<el-button @click="handleClose">关 闭</el-button>
 		</div>
@@ -50,6 +50,10 @@ export default {
 		fullscreen: {
 			type: Boolean,
 			default: false
+		},
+		showClose: {
+			type: Boolean,
+			default: true
 		}
 	},
 	data() {
