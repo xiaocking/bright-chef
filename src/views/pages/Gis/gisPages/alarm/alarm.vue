@@ -93,13 +93,13 @@ export default class GisAlarm extends Vue {
 	private realAlarm: ImealsDataObj[] = [];
 	private isModel = "Details";
 	private coverData: ImealsDataObj[] = [];
-	private alarmDetails: Idetails = {};
+	private dataDetails: Idetails = {};
 	private num = 100;
 
 	private showDetails(e) {
 		const obj = { ...e };
 		this.getAlarmDetails();
-		obj.alarmList = this.alarmDetails[e.id];
+		obj.alarmList = this.dataDetails[e.id];
 		this.detailsInfo = obj;
 		this.isModel = "Details";
 		this.DetailsFlag = true;
@@ -120,7 +120,7 @@ export default class GisAlarm extends Vue {
 		if (sessionStorage.alarmId) {
 			num = sessionStorage.alarmId;
 		}
-		this.alarmDetails[2].unshift({
+		this.dataDetails[2].unshift({
 			name: "",
 			alarmType: 4,
 			alarmTime: time,
@@ -132,38 +132,11 @@ export default class GisAlarm extends Vue {
 			personId: 2,
 			remark: "口罩未佩戴或佩戴不正确"
 		});
-		sessionStorage.alarmDetails = JSON.stringify(this.alarmDetails);
+		sessionStorage.alarmDetails = JSON.stringify(this.dataDetails);
 		sessionStorage.alarmId = num;
-		this.coverData.splice(1, 1, {
-			name: "陕西粉面馆",
-			id: 2,
-			eatType: 1,
-			footType: 1,
-			area: 120,
-			score: 3.9,
-			diviceNum: 5,
-			deviceType: 2,
-			complaint: 84,
-			inspect: 121,
-			alarmNum: 20,
-			personNum: 10,
-			cooker: 3,
-			waiter: 3,
-			leaderName: "华丽",
-			leaderTel: 13512313211,
-			sex: "男",
-			outPerseon: 4,
-			businessLicenseImgId: "003",
-			HealthPermitImgId: "004",
-			address: "宝能科技园A座16楼",
-			coverType: 1,
-			mapArea: "",
-			alarmType: 1,
-			lng: lnglat.lng02,
-			lat: lnglat.lat02,
-			remark: "陕西风味粉面馆，粉面味道很棒",
-			inspectType: 2
-		});
+		const obj = this.coverData[1];
+		obj.alarmType = 1;
+		this.coverData.splice(1, 1, obj);
 		sessionStorage.coverData = JSON.stringify(this.coverData);
 		this.init();
 		this.setMapCoverInfo();
@@ -197,10 +170,10 @@ export default class GisAlarm extends Vue {
 
 	getAlarmDetails() {
 		if (sessionStorage.alarmDetails) {
-			this.alarmDetails = JSON.parse(sessionStorage.alarmDetails);
+			this.dataDetails = JSON.parse(sessionStorage.alarmDetails);
 		} else {
 			sessionStorage.alarmDetails = JSON.stringify(details);
-			this.alarmDetails = details;
+			this.dataDetails = details;
 		}
 	}
 
@@ -242,7 +215,7 @@ export default class GisAlarm extends Vue {
 			margin-bottom: 15px;
 		}
 		position: absolute;
-		width: 160px;
+		width: 180px;
 		top: 20vh;
 		right: 0;
 		background: #fff;

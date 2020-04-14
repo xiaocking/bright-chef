@@ -23,6 +23,11 @@ import lnglat from "./lnglat.js";
  *  2 处理中
  *  3 已处理
  *
+ * inspectType
+ *  1 未提交
+ *  2 部分提交
+ *  3 已提交
+ *
  */
 const arr = [
   {

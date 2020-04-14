@@ -85,8 +85,8 @@ interface Idetails {
 
 @Component({
 	components: {
-		Map,
-		Details: () => import("./details_tem.vue")
+		Map
+		// Details: () => import("./details_tem.vue")
 		// Deal: () => import("./deal_tem.vue")
 	}
 })

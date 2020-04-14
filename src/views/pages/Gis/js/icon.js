@@ -23,9 +23,9 @@ export default {
     alarmType03: "未告警"
   },
   inspect: {
-    inspectType01: "已检",
+    inspectType01: "未检",
     inspectType02: "部分检",
-    inspectType03: "未检"
+    inspectType03: "已检"
   },
   team: {
     teamType01: "巡逻队伍",
