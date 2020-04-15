@@ -47,6 +47,6 @@ export default [
     id: 7,
     icon: "溯源",
     actIcon: "溯源(1)",
-    path: "/gisMeals"
+    path: "/traceability"
   }
 ];

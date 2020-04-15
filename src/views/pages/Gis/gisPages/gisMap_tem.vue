@@ -171,6 +171,9 @@ export default class GisPage extends Vue {
 		} else if (this.actGisNavIndex == 6) {
 			// 队伍
 			this.showTeamCover();
+		} else if (this.actGisNavIndex == 7) {
+			// 队伍
+			this.showTraceabilityCover();
 		}
 	}
 
@@ -267,7 +270,14 @@ export default class GisPage extends Vue {
 	private showTeamCover() {
 		// team
 		for (const val of team.teamList) {
-			this.addPoint(val, 'team');
+			this.addPoint(val, "team");
+		}
+	}
+
+	private showTraceabilityCover() {
+		for (const val of this.mapData) {
+			const icon = mapIcon.meals["footType0" + val.footType];
+			this.addPoint(val, icon);
 		}
 	}
 
