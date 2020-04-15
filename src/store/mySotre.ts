@@ -9,7 +9,8 @@ const state = {
   actGisNavIndex: 1,
   mapCoverInfo: undefined,
   mapClickInfo: undefined,
-  coverClickInfo: undefined
+  coverClickInfo: undefined,
+  detailsId: 0
 };
 
 const mutations = {
@@ -42,6 +43,13 @@ const mutations = {
   },
   setMapCoverInfo(state) {
     state.mapCoverInfo = new Date().getTime();
+  },
+  setDetailsId(state, num) {
+    if (num) {
+      state.detailsId = num;
+    } else {
+      state.detailsId = 0;
+    }
   }
 };
 

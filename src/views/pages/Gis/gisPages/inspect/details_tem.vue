@@ -88,6 +88,7 @@ interface ImealsDataObj {
 
 @Component
 export default class AlarmDetails extends Vue {
+	$message;
 	@Prop(Array) readonly detailsInfo!: [ImealsDataObj, IinspectDetails];
 
 	// @Emit("changeModel")

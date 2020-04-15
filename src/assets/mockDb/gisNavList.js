@@ -33,7 +33,7 @@ export default [
     id: 5,
     icon: "执法巡查",
     actIcon: "执法巡查(1)",
-    path: "/gisMeals"
+    path: "/patrol"
   },
   {
     name: "队伍",

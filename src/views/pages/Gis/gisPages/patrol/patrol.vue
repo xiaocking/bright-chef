@@ -1,22 +1,52 @@
 <template>
-	<div class="gisBox inspect">
+	<div class="gisBox patrol">
 		<component
 			:is="isModel"
 			v-if="DetailsFlag"
 			@closeDialog="hideDialog"
-			@getCoverData="getCoverData"
 			:detailsInfo="detailsInfo"
 		></component>
 
-		<div class="inspectList">
-			<h2 class="h2_tit" @click="addAlarm">自检未完成列表</h2>
-			<div
-				class="inspectList-item"
-				v-for="item in realAlarm"
-				:key="item.id"
-				@click="showDetails(item)"
-			>
+		<div class="patrolList">
+			<h2 class="h2_tit" @click="addAlarm">巡检计划列表 </h2>
+			<div class="patrolList-item" v-for="item in realAlarm" :key="item.id" @click="showPlan(item)">
 				<p class="item-tit">{{ item.name }}</p>
+				<!-- <p class="item-status">{{ item.statusName }}</p> -->
+			</div>
+		</div>
+
+		<div class="patrolDetails" v-if="showDetailsFlag">
+			<div class="details-box">
+				<h2 class="h2_tit">{{patrolData.patrolList[curData-1].name}} <span class="plan-details" @click="showDetails">详情>></span></h2>
+				<div>
+					<ul class="box-attr">
+						<li>计划状态：{{ patrolData.patrolList[curData-1].statusName }}</li>
+						<li>开始时间：{{ patrolData.patrolDetails[curData].beginTime }}</li>
+						<li>结束时间：{{ patrolData.patrolDetails[curData].finishTime }}</li>
+					</ul>
+					<div>
+						<div
+							class="patrol-item"
+							v-for="(item,key) in patrolData.patrolDetails[curData].pass"
+							:key="key"
+						>
+							<p class="item-p item-name">名称：{{ item.name }}</p>
+							<p class="item-p item-type">
+								<el-row :gutter="20">
+									<el-col :span="12">{{ item.done ==2?'已检查':"未检查" }}</el-col>
+									<el-col :span="12">
+										<span
+											v-if="item.done ==2"
+											class="item-status"
+											:class="{'error':item.status ==2,'normal':item.status==1}"
+										>{{ item.status ==1?'合格':"不合格" }}</span>
+									</el-col>
+								</el-row>
+							</p>
+							<p class="item-p item-time" v-if="item.done ==2">检查时间：{{ item.passTime }}</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -29,64 +59,48 @@ const myStoreModel = namespace("myStore");
 
 import Map from "../gisMap_tem.vue";
 
-import coverData from "../../../../../assets/mockDb/meals.js";
-import details from "../../../../../assets/mockDb/inspect.js";
-import tools from "../../../../../lib/tools.js";
-import lnglat from "../../../../../assets/mockDb/lnglat.js";
+import patrol from "../../../../../assets/mockDb/patrol.js";
 
-interface ImealsDataObj {
+interface IpatrolList {
 	name: string;
 	id: number;
-	area: number;
-	score: number;
-	diviceNum: number;
-	complaint: number;
-	inspect: number;
-	eatType: number;
-	footType: number;
-	alarmNum: number;
-	personNum: number;
-	cooker: number;
-	waiter: number;
-	leaderName: string;
-	leaderTel: number;
-	sex: string;
-	outPerseon: number;
-	businessLicenseImgId: string;
-	HealthPermitImgId: string;
-	address: string;
-	coverType: number;
-	mapArea: string;
-	lng: number;
-	lat: number;
+	status: number;
+	curLng: number;
+	curLat: number;
+	startTime: string;
+	endTime: string;
 	remark: string;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	[a: string]: any;
+	[a: string]: string | number;
 }
 
-interface IdetailsObj {
+interface Idetails2 {
 	name: string;
-	alarmType: number;
-	alarmTime: string;
-	dealType: number;
-	id: number;
-	dealTypeName: string;
-	dealTime: string;
-	dealEasesure: string;
-	personId: number;
+	status: number;
+	done: number;
+	passTime: string;
+	lng: string | number;
+	lat: string | number;
 	remark: string;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	[prop: string]: any;
+	[a: string]: string | number;
+}
+
+interface Idetails3 {
+	beginTime: string;
+	finishTime: string;
+	patrolStatus: number;
+	patrolStatusName: string;
+	remark: string;
+	pass: Idetails2[];
 }
 
 interface Idetails {
-	[prop: string]: IdetailsObj[];
+	[a: string]: Idetails3;
 }
 
 @Component({
 	components: {
-		Map
-		// Details: () => import("./details_tem.vue")
+		Map,
+		Details: () => import("./details_tem.vue")
 		// Deal: () => import("./deal_tem.vue")
 	}
 })
@@ -94,16 +108,21 @@ export default class GisInspect extends Vue {
 	private DetailsFlag = false;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private detailsInfo: any;
-	private realAlarm: ImealsDataObj[] = [];
+	private realAlarm: IpatrolList[] = [];
 	private isModel = "Details";
-	private coverData: ImealsDataObj[] = [];
-	private dataDetails: Idetails = {};
-	private num = 100;
+	private coverData: IpatrolList[] = [];
+	private dataDetails!: Idetails3;
+	private curData = 0;
+	private showDetailsFlag = false;
 
-	private showDetails(e) {
-		const obj = { ...e };
-		this.getAlarmDetails();
-		this.detailsInfo = [obj, this.dataDetails[e.id]];
+	private showPlan(e) {
+		this.curData = e.id;
+		this.setDetailsId(e.id);
+		this.showDetailsFlag = true;
+	}
+
+	private showDetails() {
+		this.detailsInfo = [this.patrolData.patrolList[this.curData-1], this.patrolData.patrolDetails[this.curData]];
 		this.isModel = "Details";
 		this.DetailsFlag = true;
 	}
@@ -120,7 +139,7 @@ export default class GisInspect extends Vue {
 	}
 
 	@myStoreModel.Mutation("setMapCoverInfo") setMapCoverInfo;
-
+	@myStoreModel.Mutation("setDetailsId") setDetailsId;
 	@myStoreModel.Mutation("clearGisCoverInfo") clearGisCoverInfo;
 	private hideDialog() {
 		this.DetailsFlag = false;
@@ -129,7 +148,7 @@ export default class GisInspect extends Vue {
 
 	@myStoreModel.State("mapClickInfo") mapClickInfo;
 	@Watch("mapClickInfo", { deep: true })
-	mapClickChange(val) {
+	private mapClickChange(val) {
 		// 地图点击
 		if (val) {
 			console.log(val);
@@ -138,68 +157,66 @@ export default class GisInspect extends Vue {
 
 	@myStoreModel.State("coverClickInfo") coverClickInfo;
 	@Watch("coverClickInfo", { deep: true })
-	coverClickChange(val) {
+	private coverClickChange(val) {
 		// 覆盖物点击
 		if (val) {
-			this.showDetails(val);
+			// this.showDetails(val);
 		}
 	}
 
-	getAlarmDetails() {
-		if (sessionStorage.dataDetails) {
-			this.dataDetails = JSON.parse(sessionStorage.dataDetails);
-		} else {
-			sessionStorage.dataDetails = JSON.stringify(details);
-			this.dataDetails = details;
-		}
-	}
-
-	private getCoverData() {
-		if (sessionStorage.coverData) {
-			// 获取缓存中的数据
-			this.coverData = JSON.parse(sessionStorage.coverData);
-		} else {
-			sessionStorage.coverData = JSON.stringify(coverData);
-			this.coverData = coverData;
-		}
-		this.init();
+	get patrolData() {
+		return patrol;
 	}
 
 	private init() {
 		this.realAlarm = [];
-		for (const val of this.coverData) {
-			if (val.inspectType !== 3) {
-				this.realAlarm.push(val);
-			}
+		for (const val of this.patrolData.patrolList) {
+			this.realAlarm.push(val);
 		}
 	}
-	created() {
-		this.getCoverData();
+
+	mounted() {
+		this.init();
 	}
 }
 </script>
 
 <style lang="scss" scoped>
-.inspect {
-	.inspectList {
-		.h2_tit {
-			font-size: 18px;
-			color: $text-primary-color;
-			font-weight: bold;
-			height: 36px;
-			line-height: 36px;
-			border-bottom: 1px solid #ccc;
-			margin-bottom: 15px;
-		}
+.patrol {
+	.h2_tit {
+		font-size: 18px;
+		color: $text-primary-color;
+		font-weight: bold;
+		height: 36px;
+		line-height: 36px;
+		border-bottom: 1px solid #ccc;
+		margin-bottom: 15px;
+		position: relative;
+		.plan-details {
+		cursor: pointer;
+    position: absolute;
+    right: 0;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 15px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+				&:hover {
+					color: $color;
+				}
+			}
+	}
+	.patrolList {
 		position: absolute;
 		width: 180px;
 		top: 20vh;
-		right: 0;
+		left: 0;
 		background: #fff;
 		padding: 10px 15px 15px 15px;
 
-		.inspectList-item {
-			color: $red-color;
+		.patrolList-item {
+			// color: $red-color;
 			margin-bottom: 10px;
 			cursor: pointer;
 			.item-tit {
@@ -207,11 +224,42 @@ export default class GisInspect extends Vue {
 				overflow: hidden;
 				text-overflow: ellipsis;
 				width: 130px;
+				&:hover {
+					text-decoration: underline;
+					color: $color;
+				}
 			}
-			&:hover {
-				text-decoration: underline;
-				color: $error-color;
+		}
+	}
+	.patrolDetails {
+		position: absolute;
+		right: 0;
+		top: 20vh;
+		width: 300px;
+		padding: 15px;
+		background: #fff;
+		.box-attr {
+			li {
+				margin-bottom: 10px;
 			}
+		}
+		.patrol-item {
+			margin-bottom: 15px;
+			border: 1px solid #ccc;
+			padding: 7px 7px 2px 7px;
+			border-radius: 7px;
+			.item-p {
+				margin-bottom: 5px;
+			}
+			.item-status {
+				&.error {
+					color: $error-color;
+				}
+				&.normal {
+					color: $color;
+				}
+			}
+			
 		}
 	}
 }

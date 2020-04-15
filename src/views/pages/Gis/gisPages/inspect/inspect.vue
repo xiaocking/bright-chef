@@ -31,8 +31,6 @@ import Map from "../gisMap_tem.vue";
 
 import coverData from "../../../../../assets/mockDb/meals.js";
 import details from "../../../../../assets/mockDb/inspect.js";
-import tools from "../../../../../lib/tools.js";
-import lnglat from "../../../../../assets/mockDb/lnglat.js";
 
 interface ImealsDataObj {
 	name: string;
@@ -65,16 +63,6 @@ interface ImealsDataObj {
 }
 
 interface IdetailsObj {
-	name: string;
-	alarmType: number;
-	alarmTime: string;
-	dealType: number;
-	id: number;
-	dealTypeName: string;
-	dealTime: string;
-	dealEasesure: string;
-	personId: number;
-	remark: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[prop: string]: any;
 }
@@ -97,8 +85,7 @@ export default class GisInspect extends Vue {
 	private realAlarm: ImealsDataObj[] = [];
 	private isModel = "Details";
 	private coverData: ImealsDataObj[] = [];
-	private dataDetails: Idetails = {};
-	private num = 100;
+	private dataDetails!: Idetails;
 
 	private showDetails(e) {
 		const obj = { ...e };
