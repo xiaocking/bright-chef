@@ -12,6 +12,7 @@ const myStoreModel = namespace("myStore");
 import amapInit from "../../../../lib/amapInit.js";
 import mealsData from "../../../../assets/mockDb/meals.js";
 import patrol from "../../../../assets/mockDb/patrol.js";
+import team from "../../../../assets/mockDb/team.js";
 import mapIcon from "./../js/icon.js";
 
 interface IdeviceInfo {
@@ -106,7 +107,7 @@ export default class GisPage extends Vue {
 	// 	return e;
 	// }
 
-	getMapData() {
+	private getMapData() {
 		if (sessionStorage.coverData) {
 			this.mapData = JSON.parse(sessionStorage.coverData);
 		} else {
@@ -151,7 +152,7 @@ export default class GisPage extends Vue {
 		this.showCover();
 	}
 
-	showCover(val = undefined) {
+	private showCover(val = undefined) {
 		if (this.actGisNavIndex == 1) {
 			// 餐馆
 			this.showMealsCover();
@@ -167,10 +168,13 @@ export default class GisPage extends Vue {
 		} else if (this.actGisNavIndex == 5) {
 			// 执法巡查
 			this.showPatrolCover(val);
+		} else if (this.actGisNavIndex == 6) {
+			// 队伍
+			this.showTeamCover();
 		}
 	}
 
-	showMealsCover() {
+	private showMealsCover() {
 		// 显示餐馆
 		for (const val of this.mapData) {
 			const icon = mapIcon.meals["footType0" + val.footType];
@@ -178,7 +182,7 @@ export default class GisPage extends Vue {
 		}
 	}
 
-	showDevicesCover() {
+	private showDevicesCover() {
 		// 显示设备
 		for (const val of this.mapData) {
 			const icon = mapIcon.devices["deviceType0" + val.deviceType];
@@ -187,7 +191,7 @@ export default class GisPage extends Vue {
 		}
 	}
 
-	showAlarmCover() {
+	private showAlarmCover() {
 		// 显示告警
 		for (const val of this.mapData) {
 			const icon = mapIcon.alarm["alarmType0" + val.alarmType];
@@ -196,7 +200,7 @@ export default class GisPage extends Vue {
 		}
 	}
 
-	showInspectCover() {
+	private showInspectCover() {
 		// 显示自检自查
 		for (const val of this.mapData) {
 			const icon = mapIcon.inspect["inspectType0" + val.inspectType];
@@ -205,7 +209,7 @@ export default class GisPage extends Vue {
 		}
 	}
 
-	showPatrolCover(val) {
+	private showPatrolCover(val) {
 		const patrolObj = patrol;
 
 		if (val) {
@@ -257,6 +261,13 @@ export default class GisPage extends Vue {
 			}
 
 			this.gisDrive(driveData);
+		}
+	}
+
+	private showTeamCover() {
+		// team
+		for (const val of team.teamList) {
+			this.addPoint(val, 'team');
 		}
 	}
 

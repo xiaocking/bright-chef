@@ -59,7 +59,7 @@ import { Vue, Component, Emit, Prop } from "vue-property-decorator";
 import person from "../../../../../assets/mockDb/person.js";
 
 @Component
-export default class AlarmDetails extends Vue {
+export default class PatrolDetails extends Vue {
 	$message;
 	@Prop(Array) readonly detailsInfo;
 	private title = "详情";

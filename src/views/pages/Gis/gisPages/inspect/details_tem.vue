@@ -87,7 +87,7 @@ interface ImealsDataObj {
 }
 
 @Component
-export default class AlarmDetails extends Vue {
+export default class InspectDetails extends Vue {
 	$message;
 	@Prop(Array) readonly detailsInfo!: [ImealsDataObj, IinspectDetails];
 

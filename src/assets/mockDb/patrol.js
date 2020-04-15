@@ -12,8 +12,8 @@ const patrolList = [
     id: 1,
     status: 2,
     statusName: "进行中",
-    curLng: lnglat.lng02,
-    curLat: lnglat.lat02,
+    curLng: lnglat.lng01,
+    curLat: lnglat.lat01,
     startTime: "09:00:00",
     endTime: "11:00:00",
     remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况"
@@ -59,7 +59,7 @@ const patrolList = [
 const patrolDetails = {
   1: {
     beginTime: "2020-03-18 09:03:20",
-    finishTime: "2020-03-18 10:57:56",
+    finishTime: "-",
     patrolStatus: 1,
     patrolTeamId: 1,
     id: 1,
@@ -107,7 +107,7 @@ const patrolDetails = {
   },
   2: {
     beginTime: "2020-03-18 09:03:20",
-    finishTime: "2020-03-18 10:57:56",
+    finishTime: "-",
     patrolStatus: 1,
     patrolTeamId: 2,
     id: 2,

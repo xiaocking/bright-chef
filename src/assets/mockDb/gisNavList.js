@@ -40,7 +40,7 @@ export default [
     id: 6,
     icon: "队伍",
     actIcon: "队伍(1)",
-    path: "/gisMeals"
+    path: "/team"
   },
   {
     name: "溯源",

@@ -44,7 +44,7 @@ interface Idevice {
 }
 
 @Component
-export default class MealDetails extends Vue {
+export default class DeviceDetails extends Vue {
 	@Prop(Object) readonly detailsInfo!: Idevice;
 
 	private closeDeviceFlag = false;
