@@ -1,14 +1,20 @@
 <template>
 	<div class="DataHome clearfix overflowCss">
 		<div class="dataHome_left fl">
-			<ul>
-				<li class="nav_li" :class="{cur:item.id===curId }" v-for="item in navMenu" :key="item.id">
-					<p class="nav_li_p1" @click="navMenuClick(item)">
-						<el-image class="nav_icon" :src="require(`../../../assets/icon/${item.icon}.png`)"></el-image>
-						<span class="nav_name">{{item.name}}</span>
-					</p>
-				</li>
-			</ul>
+			<div class="nav_li" v-for="item in navMenu" :key="item.id">
+				<p class="nav_li_p1" :class="{cur:item.id===curId }" @click="navMenuClick(1,item)">
+					<el-image class="nav_icon" :src="require(`../../../assets/icon/${item.icon}.png`)"></el-image>
+					<span class="nav_name">{{item.name}}</span>
+				</p>
+				<div class="navChildren" v-if="item.id===curId && item.hasChildren">
+					<div class="navChildren-item" v-for="item2 in item.children" :key="item2.id">
+						<p class="nav_li_p1" :class="{cur:item2.id===curId2 }" @click="navMenuClick(2,item2)">
+							<i class="el-icon-menu" style="position:relative;top:2px;margin-right:5px;"></i>
+							<span class="nav_name">{{item2.name}}</span>
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="dataHome_right fr">
 			<router-view />
@@ -35,21 +41,35 @@ export default class DataHome extends Vue {
 	private navMenu = navList;
 
 	private curId = 1;
+	private curId2 = 0;
 	private curPath = "";
 
 	private init() {
 		this.$router.push(this.navMenu[0].path);
 	}
 
-	private navMenuClick(data: InavMenu) {
-		if (this.curId === data.id) {
-			return false;
-		}
-		this.curId = data.id;
+	private navMenuClick(num, data: InavMenu) {
+		if (num == 1) {
+			if (this.curId === data.id) {
+				return false;
+			}
+			this.curId = data.id;
+			this.curId2 = 0;
 
-		if (this.curPath !== data.path) {
-			this.curPath = data.path;
-			this.$router.push({ path: "/" + data.path });
+			if (this.curPath !== data.path) {
+				this.curPath = data.path;
+				this.$router.push({ path: "/" + data.path });
+			}
+		} else {
+			if (this.curId2 === data.id) {
+				return false;
+			}
+			this.curId2 = data.id;
+
+			if (this.curPath !== data.path) {
+				this.curPath = data.path;
+				this.$router.push({ path: "/" + data.path });
+			}
 		}
 	}
 
@@ -70,7 +90,7 @@ export default class DataHome extends Vue {
 			border-top: 1px solid #eee;
 			.nav_li_p1 {
 				height: 47px;
-				padding-left: 41px;
+				padding-left: 15px;
 				cursor: pointer;
 				.nav_icon {
 					display: inline-block;
@@ -85,15 +105,26 @@ export default class DataHome extends Vue {
 					height: 47px;
 					line-height: 47px;
 				}
+				&.cur,
+				&:hover {
+					background: $active-color;
+					color: $color;
+				}
 			}
 			&:first-child {
 				border-top: none;
 			}
-			&.cur,
-			&:hover {
-				.nav_li_p1 {
-					background: $active-color;
-					color: $color;
+			.navChildren {
+				padding: 10px 5px;
+				background: #f3f3f3;
+				.navChildren-item {
+					border-top: 1px solid #e9e9e9;
+					.nav_li_p1 {
+						padding-left: 30px;
+					}
+					&:last-child {
+						border-bottom: 1px solid #e9e9e9;
+					}
 				}
 			}
 		}

@@ -5,55 +5,181 @@ export default [
     path: "dataIndex",
     icon: "工作台",
     hasChildren: false,
-    children: []
+    children: [],
   },
   {
     name: "安全卫生",
     id: 2,
     path: "dataPage",
     icon: "安全卫生",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "留样记录",
+        id: 13,
+        path: "dataPage",
+        icon: "留样记录",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "消毒记录",
+        id: 14,
+        path: "dataPage",
+        icon: "消毒记录",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "晨检记录",
+        id: 15,
+        path: "morningCheck",
+        icon: "晨检记录",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "废弃物处理记录",
+        id: 16,
+        path: "dataPage",
+        icon: "废弃物处理记录",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
   {
     name: "监测预警",
     id: 3,
     path: "dataPage",
     icon: "监测预警",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "体温告警",
+        id: 12,
+        path: "bodyTemperature",
+        icon: "体温告警",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "视频告警",
+        id: 17,
+        path: "dataPage",
+        icon: "视频告警",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
   {
     name: "餐馆管理",
     id: 4,
     path: "dataPage",
     icon: "餐馆管理",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "餐馆信息",
+        id: 18,
+        path: "dataPage",
+        icon: "餐馆信息",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
   {
     name: "自检巡检",
     id: 5,
     path: "dataPage",
     icon: "自检巡检",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "计划安排",
+        id: 19,
+        path: "dataPage",
+        icon: "计划安排",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "自检记录",
+        id: 20,
+        path: "dataPage",
+        icon: "自检记录",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "巡查记录",
+        id: 21,
+        path: "dataPage",
+        icon: "巡查记录",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
   {
     name: "食监门户",
     id: 6,
     path: "dataPage",
     icon: "食监门户",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "公文咨询",
+        id: 22,
+        path: "dataPage",
+        icon: "公文咨询",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "投诉评分",
+        id: 23,
+        path: "dataPage",
+        icon: "投诉评分",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
   {
     name: "人员管理",
     id: 7,
     path: "dataPage",
     icon: "人员管理",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "监管人员",
+        id: 24,
+        path: "dataPage",
+        icon: "监管人员",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "餐馆人员",
+        id: 25,
+        path: "dataPage",
+        icon: "餐馆人员",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "执法队伍",
+        id: 26,
+        path: "dataPage",
+        icon: "执法队伍",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
   {
     name: "系统设置",
@@ -61,23 +187,49 @@ export default [
     path: "dataPage",
     icon: "系统设置",
     hasChildren: false,
-    children: []
+    children: [],
   },
   {
     name: "视频管理",
     id: 9,
     path: "dataPage",
     icon: "视频管理",
-    hasChildren: false,
-    children: []
+    hasChildren: true,
+    children: [
+      {
+        name: "影像播放",
+        id: 27,
+        path: "dataPage",
+        icon: "影像播放",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "视频监控",
+        id: 28,
+        path: "dataPage",
+        icon: "视频监控",
+        hasChildren: false,
+        children: [],
+      },
+      {
+        name: "故障记录",
+        id: 29,
+        path: "dataPage",
+        icon: "故障记录",
+        hasChildren: false,
+        children: [],
+      },
+    ],
   },
+
   {
     name: "账号管理",
     id: 10,
     path: "dataPage",
     icon: "账号管理",
     hasChildren: false,
-    children: []
+    children: [],
   },
   {
     name: "权限管理",
@@ -85,6 +237,6 @@ export default [
     path: "dataPage",
     icon: "权限管理",
     hasChildren: false,
-    children: []
-  }
+    children: [],
+  },
 ];
