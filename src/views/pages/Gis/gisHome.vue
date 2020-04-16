@@ -61,6 +61,29 @@ export default class GisPage extends Vue {
 	}
 	.gisBox {
 		height: 100%;
+		position: relative;
+		.legend {
+			width: 0;
+			height: calc(100vh - 78px);
+			position: relative;
+			.legend-box {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 120px;
+				padding: 15px;
+				background: #fff;
+			}
+			.legend-item {
+				position: relative;
+				display: flex;
+				align-items: center;
+				margin-bottom: 10px;
+				.item-icon {
+					margin-right: 10px;
+				}
+			}
+		}
 	}
 }
 </style>

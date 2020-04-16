@@ -117,16 +117,16 @@ const dataObj = {
   2: [
     {
       time: "2020-03-14 09:34:27",
-      subType: 3,
-      subTypeName: "已提交",
+      subType: 2,
+      subTypeName: "未完整提交",
       id: 5,
       reportList: [
         {
           type: 1,
           id: 1,
           typeName: "晨检",
-          subTime: "2020-03-14 09:34:27",
-          reportStatus: 2,
+          subTime: "",
+          reportStatus: 1,
           done: 0,
           reportId: "0001",
         },

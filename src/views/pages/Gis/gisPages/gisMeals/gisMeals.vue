@@ -2,6 +2,19 @@
 	<div class="gisBox">
 		<!-- <Map @MapClick="mapClick" @CoverClick="coverClick" :showData="mealsInfo"></Map> -->
 		<Details v-if="DetailsFlag" @closeDialog="hideDialog" :detailsInfo="detailsInfo"></Details>
+		<div class="legend">
+			<div class="legend-box">
+				<div class="legend-item" v-for="(item,key) in legendList" :key="key">
+					<p class="item-icon">
+						<el-image
+							style="width:24px;height:28px;"
+							:src="require(`../../../../../assets/mapIcon/${item.icon}.png`)"
+						></el-image>
+					</p>
+					<p class="item-name">{{ item.name }}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -18,6 +31,16 @@ const myStoreModel = namespace("myStore");
 export default class GisMeals extends Vue {
 	private DetailsFlag = false;
 	private detailsInfo!: object;
+	private legendList = [
+		{
+			name: "西餐",
+			icon: "大西餐馆图标"
+		},
+		{
+			name: "中餐",
+			icon: "大中餐馆图标"
+		}
+	];
 
 	private mapClick(e: MouseEvent) {
 		console.log("地图点击", e);
@@ -59,4 +82,8 @@ export default class GisMeals extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.gisBox {
+	position: relative;
+}
+</style>

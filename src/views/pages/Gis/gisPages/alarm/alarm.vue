@@ -15,6 +15,20 @@
 				<p class="item-tit">{{ item.name }}</p>
 			</div>
 		</div>
+
+		<div class="legend">
+			<div class="legend-box">
+				<div class="legend-item" v-for="(item,key) in legendList" :key="key">
+					<p class="item-icon">
+						<el-image
+							style="width:24px;height:28px;"
+							:src="require(`../../../../../assets/mapIcon/${item.icon}.png`)"
+						></el-image>
+					</p>
+					<p class="item-name">{{ item.name }}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -94,7 +108,16 @@ export default class GisAlarm extends Vue {
 	private isModel = "Details";
 	private coverData: ImealsDataObj[] = [];
 	private dataDetails: Idetails = {};
-	private num = 100;
+	private legendList = [
+		{
+			name: "未处理",
+			icon: "告警"
+		},
+		{
+			name: "已处理",
+			icon: "未告警"
+		}
+	];
 
 	private showDetails(e) {
 		const obj = { ...e };

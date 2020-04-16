@@ -2,6 +2,19 @@
 	<div class="gisBox">
 		<!-- <Map @MapClick="mapClick" @CoverClick="coverClick" :showData="coverData"></Map> -->
 		<Details v-if="DetailsFlag" @closeDialog="hideDialog" :detailsInfo="detailsInfo"></Details>
+		<div class="legend">
+			<div class="legend-box">
+				<div class="legend-item" v-for="(item,key) in legendList" :key="key">
+					<p class="item-icon">
+						<el-image
+							style="width:24px;height:28px;"
+							:src="require(`../../../../../assets/mapIcon/${item.icon}.png`)"
+						></el-image>
+					</p>
+					<p class="item-name">{{ item.name }}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -21,6 +34,28 @@ import detailsInfo from "../../../../../assets/mockDb/devices.js";
 export default class GisDevices extends Vue {
 	private DetailsFlag = false;
 	private detailsInfo!: object;
+	private legendList = [
+		{
+			name: "在线",
+			icon: "在线"
+		},
+		{
+			name: "离线",
+			icon: "离线"
+		},
+		{
+			name: "黑屏",
+			icon: "黑屏"
+		},
+		{
+			name: "蓝屏",
+			icon: "蓝屏"
+		},
+		{
+			name: "花点",
+			icon: "花点"
+		}
+	];
 
 	private mapClick(e: MouseEvent) {
 		console.log("地图点击", e);
@@ -64,4 +99,5 @@ export default class GisDevices extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

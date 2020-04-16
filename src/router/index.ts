@@ -36,6 +36,7 @@ const routes = [
       },
     ],
   },
+  // { path: "*", redirect: "/dataHome" },
 ];
 
 const router = new VueRouter({
