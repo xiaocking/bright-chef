@@ -133,10 +133,10 @@ export default class GisInspect extends Vue {
 	}
 
 	getAlarmDetails() {
-		if (sessionStorage.dataDetails) {
-			this.dataDetails = JSON.parse(sessionStorage.dataDetails);
+		if (sessionStorage.inspectDetails) {
+			this.dataDetails = JSON.parse(sessionStorage.inspectDetails);
 		} else {
-			sessionStorage.dataDetails = JSON.stringify(details);
+			sessionStorage.inspectDetails = JSON.stringify(details);
 			this.dataDetails = details;
 		}
 	}

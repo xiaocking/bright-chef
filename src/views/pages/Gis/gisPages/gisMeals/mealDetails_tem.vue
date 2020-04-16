@@ -69,6 +69,7 @@
 						<el-image
 							style="width:30px;height:20px"
 							:preview-src-list="srcList"
+							@click="getImage(detailsInfo.businessLicenseImgId)"
 							:src="require('@/assets/images/'+detailsInfo.businessLicenseImgId+'.jpg')"
 						></el-image>
 					</el-col>
@@ -77,6 +78,7 @@
 						<el-image
 							style="width:30px;height:20px"
 							:preview-src-list="srcList"
+							@click="getImage(detailsInfo.HealthPermitImgId)"
 							:src="require('@/assets/images/'+detailsInfo.HealthPermitImgId+'.jpg')"
 						></el-image>
 					</el-col>
@@ -143,6 +145,16 @@ export default class MealDetails extends Vue {
 
 	private doTel(val) {
 		this.$message.success("拨打电话 " + val);
+	}
+
+	private getImage(img) {
+		const Oimg = require("@/assets/images/" + img + ".jpg");
+		if (this.srcList.length > 0) {
+			this.srcList.splice(0, 1, Oimg);
+		} else {
+			this.srcList.push(Oimg);
+		}
+		console.log(this.srcList);
 	}
 
 	@Prop(Object) readonly detailsInfo!: ImealsDataObj;

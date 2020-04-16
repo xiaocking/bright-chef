@@ -21,18 +21,6 @@ const dataObj = {
       name: "",
       alarmType: 4,
       alarmTime: "2020-3-6 16:30:30",
-      dealType: 1,
-      dealTypeName: "未处理",
-      dealTime: "",
-      personId: 1,
-      dealEasesure: "",
-      id: 1,
-      remark: "口罩未佩戴或佩戴不正确"
-    },
-    {
-      name: "",
-      alarmType: 4,
-      alarmTime: "2020-3-6 16:30:30",
       dealType: 2,
       id: 2,
       dealTypeName: "处理中",
@@ -55,6 +43,18 @@ const dataObj = {
     }
   ],
   2: [
+    {
+      name: "",
+      alarmType: 4,
+      alarmTime: "2020-3-6 16:30:30",
+      dealType: 1,
+      id: 1,
+      dealTypeName: "未处理",
+      dealTime: "",
+      personId: 1,
+      dealEasesure: "",
+      remark: "口罩未佩戴或佩戴不正确"
+    },
     {
       name: "",
       alarmType: 4,
@@ -92,18 +92,6 @@ const dataObj = {
     }
   ],
   3: [
-    {
-      name: "",
-      alarmType: 4,
-      alarmTime: "2020-3-6 16:30:30",
-      dealType: 1,
-      id: 6,
-      dealTypeName: "未处理",
-      dealTime: "",
-      dealEasesure: "",
-      personId: 1,
-      remark: "口罩未佩戴或佩戴不正确"
-    },
     {
       name: "",
       alarmType: 4,
@@ -249,18 +237,6 @@ const dataObj = {
     }
   ],
   4: [
-    {
-      name: "",
-      alarmType: 4,
-      alarmTime: "2020-3-6 16:30:30",
-      dealType: 1,
-      id: 18,
-      dealTypeName: "未处理",
-      dealTime: "",
-      dealEasesure: "",
-      personId: 1,
-      remark: "口罩未佩戴或佩戴不正确"
-    },
     {
       name: "",
       alarmType: 3,

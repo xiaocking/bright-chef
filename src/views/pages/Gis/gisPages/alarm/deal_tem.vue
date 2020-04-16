@@ -49,7 +49,6 @@ const myStoreModel = namespace("myStore");
 import personList from "../../../../../assets/mockDb/person.js";
 import alarmType from "../../../../../assets/mockDb/alarmType.js";
 import tools from "../../../../../lib/tools.js";
-import lnglat from "../../../../../assets/mockDb/lnglat.js";
 
 interface IalarmDetails {
 	name: string;
@@ -98,6 +97,7 @@ interface ImealsDataObj {
 
 @Component
 export default class AlarmDetails extends Vue {
+	$message;
 	@Prop(Array) readonly detailsInfo!: [ImealsDataObj, IalarmDetails, number];
 
 	private title = "";
@@ -141,46 +141,27 @@ export default class AlarmDetails extends Vue {
 		OdetailsData.dealTime = tools.dateFormat();
 		OdetailsData.personId = this.dataForm.personId;
 		OdetailsData.dealEasesure = this.dataForm.dealEasesure;
-		console.log(details[this.detailsInfo[0].id]);
 		details[this.detailsInfo[0].id].splice(
 			this.detailsInfo[2],
 			1,
 			OdetailsData
 		);
-		sessionStorage.alarmDetails = JSON.stringify(details);
-		this.$message.success("告警处理成功");
 
 		const OcoverData = JSON.parse(sessionStorage.coverData);
-		OcoverData.splice(1, 1, {
-			name: "陕西粉面馆",
-			id: 2,
-			eatType: 1,
-			footType: 1,
-			area: 120,
-			score: 3.9,
-			diviceNum: 5,
-			deviceType: 2,
-			complaint: 84,
-			inspect: 121,
-			alarmNum: 20,
-			personNum: 10,
-			cooker: 3,
-			waiter: 3,
-			leaderName: "华丽",
-			leaderTel: 13512313211,
-			sex: "男",
-			outPerseon: 4,
-			businessLicenseImgId: "003",
-			HealthPermitImgId: "004",
-			address: "宝能科技园A座16楼",
-			coverType: 1,
-			mapArea: "",
-			alarmType: 3,
-			lng: lnglat.lng02,
-			lat: lnglat.lat02,
-			remark: "陕西风味粉面馆，粉面味道很棒",
-			inspectType: 2
-		});
+		const Odata = OcoverData[1];
+		let flag = true;
+		for (const val of details[Odata.id]) {
+			if (val.dealType == 1) {
+				flag = false;
+				break;
+			}
+		}
+		if (flag) {
+			Odata.alarmType = 3;
+			OcoverData.splice(1, 1, Odata);
+		}
+		this.$message.success("告警处理成功");
+		sessionStorage.alarmDetails = JSON.stringify(details);
 		sessionStorage.coverData = JSON.stringify(OcoverData);
 		this.closeDialog();
 		this.getCoverData();
@@ -206,7 +187,7 @@ export default class AlarmDetails extends Vue {
 		return e;
 	}
 
-	dataFormInit() {
+	private dataFormInit() {
 		const formKey = Object.keys(this.dataForm);
 
 		for (const val of formKey) {

@@ -1,7 +1,13 @@
 <template>
 	<div id="Home">
 		<header id="home_header">
-			<h1 class="home_header_logo">明厨亮灶</h1>
+			<h1 class="home_header_logo">
+				<el-image
+					style="width: 95px;height: 28px;position: relative;top: 3px;"
+					:src="require('../assets/logo.png')"
+				></el-image>
+				<span>明厨亮灶</span>
+			</h1>
 			<nav id="nav">
 				<div class="nav-box" v-if="dataOrMap">
 					<div
@@ -12,10 +18,16 @@
 						@click="navClick(item)"
 					>
 						<p class="nav-icon" v-show="actGisNavIndex !== item.id">
-							<el-image :src="require('../assets/navIcon/'+item.icon+'.png')"></el-image>
+							<el-image
+								style="width:28px;height:28px;"
+								:src="require('../assets/navIcon/'+item.icon+'.png')"
+							></el-image>
 						</p>
 						<p class="nav-icon" v-show="actGisNavIndex === item.id">
-							<el-image :src="require('../assets/navIcon/'+item.actIcon+'.png')"></el-image>
+							<el-image
+								style="width:28px;height:28px;"
+								:src="require('../assets/navIcon/'+item.actIcon+'.png')"
+							></el-image>
 						</p>
 						<p class="nav-tit">{{ item.name }}</p>
 					</div>
@@ -139,14 +151,14 @@ export default class Home extends Vue {
 
 	#home_header {
 		display: flex;
-		height: 98px;
+		height: 78px;
 		background: $color;
 		color: #fff;
 		position: relative;
 		z-index: 100;
 		h1 {
-			height: 98px;
-			line-height: 98px;
+			height: 78px;
+			line-height: 78px;
 			font-size: 30px;
 			width: 266px;
 			text-align: center;
@@ -172,9 +184,9 @@ export default class Home extends Vue {
 				justify-content: center;
 				cursor: pointer;
 				.nav-icon {
-					width: 38px;
-					height: 38px;
-					margin-bottom: 15px;
+					width: 28px;
+					height: 28px;
+					margin-bottom: 10px;
 				}
 				&:first-child {
 					margin-left: 0;
@@ -186,7 +198,7 @@ export default class Home extends Vue {
 			}
 		}
 		.home_header_menu {
-			padding: 29px 0;
+			padding: 21px 0;
 			margin: 0 20px;
 			li {
 				float: left;
@@ -216,7 +228,7 @@ export default class Home extends Vue {
 		}
 	}
 	#home_content {
-		height: calc(100% - 98px);
+		height: calc(100% - 78px);
 	}
 }
 </style>

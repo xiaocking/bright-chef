@@ -16,6 +16,10 @@
  *
  * reportId 报告id
  *
+ * done
+ *  0 未审核
+ *  1 审核通过
+ *  2 不通过
  *
  */
 
@@ -33,7 +37,8 @@ const dataObj = {
           typeName: "晨检",
           reportStatus: 1,
           subTime: "",
-          reportId: ""
+          done: 0,
+          reportId: "",
         },
         {
           type: 2,
@@ -41,7 +46,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "",
           reportStatus: 1,
-          reportId: ""
+          done: 0,
+          reportId: "",
         },
         {
           type: 3,
@@ -49,7 +55,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "",
           reportStatus: 1,
-          reportId: ""
+          done: 0,
+          reportId: "",
         },
         {
           type: 4,
@@ -57,9 +64,10 @@ const dataObj = {
           subTime: "",
           typeName: "废弃物",
           reportStatus: 1,
-          reportId: ""
-        }
-      ]
+          done: 0,
+          reportId: "",
+        },
+      ],
     },
     {
       time: "2020-03-13 09:34:27",
@@ -71,9 +79,10 @@ const dataObj = {
           type: 1,
           id: 1,
           typeName: "晨检",
-          subTime: "2020-03-14 09:34:27",
-          reportStatus: 2,
-          reportId: "0001"
+          subTime: "",
+          reportStatus: 1,
+          done: 0,
+          reportId: "",
         },
         {
           type: 2,
@@ -81,7 +90,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 0,
+          reportId: "0002",
         },
         {
           type: 3,
@@ -89,7 +99,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0003"
+          done: 0,
+          reportId: "0003",
         },
         {
           type: 4,
@@ -97,25 +108,27 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0004"
-        }
-      ]
-    }
+          done: 0,
+          reportId: "0004",
+        },
+      ],
+    },
   ],
   2: [
     {
       time: "2020-03-14 09:34:27",
-      subType: 2,
-      subTypeName: "未完整提交",
+      subType: 3,
+      subTypeName: "已提交",
       id: 5,
       reportList: [
         {
           type: 1,
           id: 1,
           typeName: "晨检",
-          subTime: "",
-          reportStatus: 1,
-          reportId: ""
+          subTime: "2020-03-14 09:34:27",
+          reportStatus: 2,
+          done: 0,
+          reportId: "0001",
         },
         {
           type: 2,
@@ -123,7 +136,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 1,
+          reportId: "0002",
         },
         {
           type: 3,
@@ -131,7 +145,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0003"
+          done: 1,
+          reportId: "0003",
         },
         {
           type: 4,
@@ -139,14 +154,15 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0004"
-        }
-      ]
+          done: 1,
+          reportId: "0004",
+        },
+      ],
     },
     {
       time: "2020-03-13 09:34:27",
-      subType: 2,
-      subTypeName: "未完整提交",
+      subType: 3,
+      subTypeName: "已提交",
       id: 6,
       reportList: [
         {
@@ -155,7 +171,8 @@ const dataObj = {
           typeName: "晨检",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0001"
+          done: 1,
+          reportId: "0001",
         },
         {
           type: 2,
@@ -163,7 +180,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 1,
+          reportId: "0002",
         },
         {
           type: 3,
@@ -171,7 +189,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0003"
+          done: 1,
+          reportId: "0003",
         },
         {
           type: 4,
@@ -179,16 +198,17 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0004"
-        }
-      ]
-    }
+          done: 1,
+          reportId: "0004",
+        },
+      ],
+    },
   ],
   3: [
     {
       time: "2020-03-14 09:34:27",
       subType: 3,
-      subTypeName: "未完整提交",
+      subTypeName: "已提交",
       id: 7,
       reportList: [
         {
@@ -197,7 +217,8 @@ const dataObj = {
           typeName: "晨检",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 0,
+          reportId: "0002",
         },
         {
           type: 2,
@@ -205,7 +226,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 2,
+          reportId: "0002",
         },
         {
           type: 3,
@@ -213,7 +235,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0003"
+          done: 1,
+          reportId: "0003",
         },
         {
           type: 4,
@@ -221,9 +244,10 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0004"
-        }
-      ]
+          done: 1,
+          reportId: "0004",
+        },
+      ],
     },
     {
       time: "2020-03-13 09:34:27",
@@ -237,7 +261,8 @@ const dataObj = {
           typeName: "晨检",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0001"
+          done: 1,
+          reportId: "0001",
         },
         {
           type: 2,
@@ -245,7 +270,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 0,
+          reportId: "0002",
         },
         {
           type: 3,
@@ -253,7 +279,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0003"
+          done: 1,
+          reportId: "0003",
         },
         {
           type: 4,
@@ -261,10 +288,11 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0004"
-        }
-      ]
-    }
+          done: 1,
+          reportId: "0004",
+        },
+      ],
+    },
   ],
   4: [
     {
@@ -279,7 +307,8 @@ const dataObj = {
           typeName: "晨检",
           subTime: "",
           reportStatus: 1,
-          reportId: ""
+          done: 1,
+          reportId: "",
         },
         {
           type: 2,
@@ -287,7 +316,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "",
           reportStatus: 1,
-          reportId: ""
+          done: 1,
+          reportId: "",
         },
         {
           type: 3,
@@ -295,7 +325,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "",
           reportStatus: 1,
-          reportId: ""
+          done: 1,
+          reportId: "",
         },
         {
           type: 4,
@@ -303,9 +334,10 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "",
           reportStatus: 1,
-          reportId: ""
-        }
-      ]
+          done: 1,
+          reportId: "",
+        },
+      ],
     },
     {
       time: "2020-03-13 09:34:27",
@@ -319,7 +351,8 @@ const dataObj = {
           typeName: "晨检",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0001"
+          done: 1,
+          reportId: "0001",
         },
         {
           type: 2,
@@ -327,7 +360,8 @@ const dataObj = {
           typeName: "消毒",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0002"
+          done: 1,
+          reportId: "0002",
         },
         {
           type: 3,
@@ -335,7 +369,8 @@ const dataObj = {
           typeName: "留样",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0003"
+          done: 1,
+          reportId: "0003",
         },
         {
           type: 4,
@@ -343,11 +378,12 @@ const dataObj = {
           typeName: "废弃物",
           subTime: "2020-03-14 09:34:27",
           reportStatus: 2,
-          reportId: "0004"
-        }
-      ]
-    }
-  ]
+          done: 1,
+          reportId: "0004",
+        },
+      ],
+    },
+  ],
 };
 
 export default dataObj;
