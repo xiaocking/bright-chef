@@ -154,7 +154,6 @@ export default class MealDetails extends Vue {
 		} else {
 			this.srcList.push(Oimg);
 		}
-		console.log(this.srcList);
 	}
 
 	@Prop(Object) readonly detailsInfo!: ImealsDataObj;
