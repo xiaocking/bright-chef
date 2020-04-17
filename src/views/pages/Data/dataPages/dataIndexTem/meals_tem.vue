@@ -54,6 +54,17 @@ export default class Meals extends Vue {
 					type: "pie",
 					radius: ["50%", "70%"],
 					center: ["50%", "50%"],
+					label: {
+						show: false,
+						position: "center"
+					},
+					emphasis: {
+						label: {
+							show: true,
+							fontSize: "20",
+							fontWeight: "bold"
+						}
+					},
 					data: this.chartData
 				}
 			]

@@ -43,7 +43,11 @@ export default class Meals extends Vue {
 			},
 			tooltip: {
 				trigger: "item",
-				formatter: "{a} <br/>{b} : {c} ({d}%)"
+				formatter: "{a} <br/>{b} : {c} ({d}%)",
+				position: function(point, params, dom, rect, size) {
+					// 固定在顶部
+					return [point[0], point[1]];
+				}
 			},
 			legend: {
 				data: obj.xList

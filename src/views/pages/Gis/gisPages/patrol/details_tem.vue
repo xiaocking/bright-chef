@@ -31,7 +31,12 @@
 				</div>
 				<div class="details-meals">
 					<h3 class="h3_tit">巡查点</h3>
-					<div class="meals-item" v-for="item in detailsInfo[1].pass" :key="item.id">
+					<div
+						class="meals-item"
+						v-for="item in detailsInfo[1].pass"
+						:key="item.id"
+						@click="itemClick(item)"
+					>
 						<p class="item-p item-name">{{ item.name }}</p>
 						<p class="item-p item-done">
 							<el-row :gutter="20">
@@ -71,6 +76,11 @@ export default class PatrolDetails extends Vue {
 
 	private doTel(val) {
 		this.$message.success("拨打电话 " + val);
+	}
+
+	@Emit("showMeals")
+	private itemClick(val) {
+		return val;
 	}
 
 	get personObj() {

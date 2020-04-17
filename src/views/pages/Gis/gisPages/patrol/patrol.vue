@@ -1,9 +1,15 @@
 <template>
 	<div class="gisBox patrol">
-		<component :is="isModel" v-if="DetailsFlag" @closeDialog="hideDialog" :detailsInfo="detailsInfo"></component>
+		<component
+			:is="isModel"
+			v-if="DetailsFlag"
+			@closeDialog="hideDialog"
+			@showMeals="showMeals"
+			:detailsInfo="detailsInfo"
+		></component>
 
 		<div class="patrolList">
-			<h2 class="h2_tit" @click="addAlarm">巡检计划列表</h2>
+			<h2 class="h2_tit">巡检计划列表</h2>
 			<div class="patrolList-item" v-for="item in realAlarm" :key="item.id" @click="showPlan(item)">
 				<p class="item-tit">{{ item.name }}</p>
 				<!-- <p class="item-status">{{ item.statusName }}</p> -->
@@ -27,6 +33,7 @@
 							class="patrol-item"
 							v-for="(item,key) in patrolData.patrolDetails[curData].pass"
 							:key="key"
+							@click="showMeals(item)"
 						>
 							<p class="item-p item-name">名称：{{ item.name }}</p>
 							<p class="item-p item-type">
@@ -112,8 +119,8 @@ interface Idetails {
 @Component({
 	components: {
 		Map,
-		Details: () => import("./details_tem.vue")
-		// Deal: () => import("./deal_tem.vue")
+		Details: () => import("./details_tem.vue"),
+		MealsDetails: () => import("./mealDetails_tem.vue")
 	}
 })
 export default class GisInspect extends Vue {
@@ -156,15 +163,10 @@ export default class GisInspect extends Vue {
 		this.DetailsFlag = true;
 	}
 
-	// private changeModel(arr) {
-	// this.DetailsFlag = false;
-	// this.detailsInfo = arr;
-	// this.isModel = "Deal";
-	// this.DetailsFlag = true;
-	// }
-
-	private addAlarm() {
-		// 手动添加告警
+	private showMeals(data) {
+		this.detailsInfo = data;
+		this.isModel = "MealsDetails";
+		this.DetailsFlag = true;
 	}
 
 	@myStoreModel.Mutation("setMapCoverInfo") setMapCoverInfo;
@@ -189,7 +191,7 @@ export default class GisInspect extends Vue {
 	private coverClickChange(val) {
 		// 覆盖物点击
 		if (val) {
-			// this.showDetails(val);
+			this.showMeals(val);
 		}
 	}
 
