@@ -216,21 +216,9 @@ export default class GisPage extends Vue {
 		const patrolObj = patrol;
 
 		if (val) {
-			// 显示单个
+			// 	// 显示单个
 			this.clearCover();
 
-			// 显示所有
-			const driveData: IdriveData = {
-				start: {
-					lng: 0,
-					lat: 0
-				},
-				end: {
-					lng: 0,
-					lat: 0
-				},
-				wayPoint: []
-			};
 			if (patrolObj.patrolList[val - 1].status == 2) {
 				const obj = {
 					lng: patrolObj.patrolList[0].curLng,
@@ -247,23 +235,42 @@ export default class GisPage extends Vue {
 				});
 			}
 
-			for (const [key, val2] of patrolObj.patrolDetails[val].pass.entries()) {
-				if (key === 0) {
-					driveData.start.lng = val2.lng;
-					driveData.start.lat = val2.lat;
-				} else if (key === patrolObj.patrolDetails[val].pass.length - 1) {
-					driveData.end.lng = val2.lng;
-					driveData.end.lat = val2.lat;
+			const obj = {
+				coverType: 2,
+				polyline: ""
+			};
+			const arr = [];
+			let num = 0;
+			for (const item of patrolObj.patrolDetails[val].pass) {
+				const data = { ...item };
+				data.coverType = 1;
+				if (item.done == 1) {
+					// 未检查
+					const icon = mapIcon.patrol["patrolType01"];
+					this.addPoint(data, icon);
 				} else {
-					const obj = {
-						lng: val2.lng,
-						lat: val2.lat
-					};
-					driveData.wayPoint.push(obj);
+					if (num == 0) {
+						obj.polyline += data.lng + "," + data.lat;
+					} else {
+						obj.polyline += "-" + data.lng + "," + data.lat;
+					}
+
+					num++;
+					if (item.status == 1) {
+						// 检查不合格
+						const icon = mapIcon.patrol["patrolType02"];
+						this.addPoint(data, icon);
+					} else {
+						// 检查合格
+						const icon = mapIcon.patrol["patrolType03"];
+						this.addPoint(data, icon);
+					}
 				}
 			}
 
-			this.gisDrive(driveData);
+			if (num > 1) {
+				this.addLine(obj, true, true);
+			}
 		}
 	}
 
@@ -319,10 +326,37 @@ export default class GisPage extends Vue {
 		}
 	}
 
-	private addLine(val) {
+	private addLine(val, direction = false, flag = true) {
 		// 添加线
+
 		if (val.coverType == 2) {
 			// 创建一个 icon
+			const arr = val.polyline.split("-");
+			const lnglagArr: string[][] = [];
+			for (const data of arr) {
+				const arr2 = data.split(",");
+				lnglagArr.push(arr2);
+			}
+
+			const polyline = new window.AMap.Polyline({
+				path: lnglagArr,
+				isOutline: true,
+				showDir: direction,
+				strokeWeight: 5,
+				outlineColor: "#ffeeff",
+				strokeColor: "#3366FF",
+				lineJoin: "round",
+				lineCap: "round",
+				zIndex: 50
+			});
+
+			this.coverList.push(polyline);
+			// polyline.setMap(this.map);
+			this.map.add(polyline);
+			if (flag) {
+				// 缩放地图到合适的视野级别
+				this.map.setFitView([polyline]);
+			}
 		}
 	}
 
@@ -341,7 +375,7 @@ export default class GisPage extends Vue {
 			zooms: [12, 20],
 			resizeEnable: true,
 			features: ["bg", "road", "building"],
-			viewMode: "3D", //开启3D视图,默认为关闭
+			// viewMode: "3D", //开启3D视图,默认为关闭
 
 			rotateEnable: true,
 			pitchEnable: true,

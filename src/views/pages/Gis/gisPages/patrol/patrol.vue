@@ -1,14 +1,9 @@
 <template>
 	<div class="gisBox patrol">
-		<component
-			:is="isModel"
-			v-if="DetailsFlag"
-			@closeDialog="hideDialog"
-			:detailsInfo="detailsInfo"
-		></component>
+		<component :is="isModel" v-if="DetailsFlag" @closeDialog="hideDialog" :detailsInfo="detailsInfo"></component>
 
 		<div class="patrolList">
-			<h2 class="h2_tit" @click="addAlarm">巡检计划列表 </h2>
+			<h2 class="h2_tit" @click="addAlarm">巡检计划列表</h2>
 			<div class="patrolList-item" v-for="item in realAlarm" :key="item.id" @click="showPlan(item)">
 				<p class="item-tit">{{ item.name }}</p>
 				<!-- <p class="item-status">{{ item.statusName }}</p> -->
@@ -17,7 +12,10 @@
 
 		<div class="patrolDetails" v-if="showDetailsFlag">
 			<div class="details-box">
-				<h2 class="h2_tit">{{patrolData.patrolList[curData-1].name}} <span class="plan-details" @click="showDetails">详情>></span></h2>
+				<h2 class="h2_tit">
+					{{patrolData.patrolList[curData-1].name}}
+					<span class="plan-details" @click="showDetails">详情>></span>
+				</h2>
 				<div>
 					<ul class="box-attr">
 						<li>计划状态：{{ patrolData.patrolList[curData-1].statusName }}</li>
@@ -46,6 +44,20 @@
 							<p class="item-p item-time" v-if="item.done ==2">检查时间：{{ item.passTime }}</p>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="legend">
+			<div class="legend-box">
+				<div class="legend-item" v-for="(item,key) in legendList" :key="key">
+					<p class="item-icon">
+						<el-image
+							style="width:24px;height:28px;"
+							:src="require(`../../../../../assets/mapIcon/${item.icon}.png`)"
+						></el-image>
+					</p>
+					<p class="item-name">{{ item.name }}</p>
 				</div>
 			</div>
 		</div>
@@ -114,6 +126,20 @@ export default class GisInspect extends Vue {
 	private dataDetails!: Idetails3;
 	private curData = 0;
 	private showDetailsFlag = false;
+	private legendList = [
+		{
+			name: "未检查",
+			icon: "未检"
+		},
+		{
+			name: "检查不合格",
+			icon: "部分检"
+		},
+		{
+			name: "检查合格",
+			icon: "已检"
+		}
+	];
 
 	private showPlan(e) {
 		this.curData = e.id;
@@ -122,7 +148,10 @@ export default class GisInspect extends Vue {
 	}
 
 	private showDetails() {
-		this.detailsInfo = [this.patrolData.patrolList[this.curData-1], this.patrolData.patrolDetails[this.curData]];
+		this.detailsInfo = [
+			this.patrolData.patrolList[this.curData - 1],
+			this.patrolData.patrolDetails[this.curData]
+		];
 		this.isModel = "Details";
 		this.DetailsFlag = true;
 	}
@@ -193,19 +222,19 @@ export default class GisInspect extends Vue {
 		margin-bottom: 15px;
 		position: relative;
 		.plan-details {
-		cursor: pointer;
-    position: absolute;
-    right: 0;
-    height: 36px;
-    line-height: 36px;
-    padding: 0 15px;
-    font-size: 12px;
-    font-weight: normal;
-    color: #999;
-				&:hover {
-					color: $color;
-				}
+			cursor: pointer;
+			position: absolute;
+			right: 0;
+			height: 36px;
+			line-height: 36px;
+			padding: 0 15px;
+			font-size: 12px;
+			font-weight: normal;
+			color: #999;
+			&:hover {
+				color: $color;
 			}
+		}
 	}
 	.patrolList {
 		position: absolute;
@@ -259,7 +288,6 @@ export default class GisInspect extends Vue {
 					color: $color;
 				}
 			}
-			
 		}
 	}
 }

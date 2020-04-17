@@ -16,7 +16,7 @@ const patrolList = [
     curLat: lnglat.lat01,
     startTime: "09:00:00",
     endTime: "11:00:00",
-    remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况"
+    remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况",
   },
   {
     name: "巡检计划002",
@@ -27,7 +27,7 @@ const patrolList = [
     curLat: 0,
     startTime: "09:00:00",
     endTime: "11:00:00",
-    remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况"
+    remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况",
   },
   {
     name: "巡检计划003",
@@ -38,8 +38,8 @@ const patrolList = [
     endTime: "11:00:00",
     curLng: 0,
     curLat: 0,
-    remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况"
-  }
+    remark: "巡查一品红川菜、陕西粉面馆、海极鲜美食坊、牛仔烧烤餐厅相关情况",
+  },
 ];
 
 /**
@@ -73,7 +73,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:36:54",
         lng: lnglat.lng03,
         lat: lnglat.lat03,
-        remark: "正常"
+        remark: "正常",
       },
       {
         name: "一品红川菜",
@@ -82,7 +82,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:45:54",
         lng: lnglat.lng01,
         lat: lnglat.lat01,
-        remark: "巡查到员工口罩佩戴不合规范"
+        remark: "巡查到员工口罩佩戴不合规范",
       },
       {
         name: "陕西粉面馆",
@@ -91,7 +91,7 @@ const patrolDetails = {
         passTime: "2020-03-18 10:12:54",
         lng: lnglat.lng02,
         lat: lnglat.lat02,
-        remark: ""
+        remark: "",
       },
 
       {
@@ -101,9 +101,9 @@ const patrolDetails = {
         passTime: "2020-03-18 09:57:54",
         lng: lnglat.lng04,
         lat: lnglat.lat04,
-        remark: ""
-      }
-    ]
+        remark: "",
+      },
+    ],
   },
   2: {
     beginTime: "2020-03-18 09:03:20",
@@ -121,7 +121,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:45:54",
         lng: lnglat.lng01,
         lat: lnglat.lat01,
-        remark: ""
+        remark: "",
       },
       {
         name: "陕西粉面馆",
@@ -130,7 +130,7 @@ const patrolDetails = {
         passTime: "2020-03-18 10:12:54",
         lng: lnglat.lng02,
         lat: lnglat.lat02,
-        remark: ""
+        remark: "",
       },
       {
         name: "海极鲜美食坊",
@@ -139,7 +139,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:36:54",
         lng: lnglat.lng03,
         lat: lnglat.lat03,
-        remark: ""
+        remark: "",
       },
       {
         name: "牛仔烧烤餐厅",
@@ -148,9 +148,9 @@ const patrolDetails = {
         passTime: "2020-03-18 09:57:54",
         lng: lnglat.lng04,
         lat: lnglat.lat04,
-        remark: ""
-      }
-    ]
+        remark: "",
+      },
+    ],
   },
   3: {
     beginTime: "2020-03-18 09:03:20",
@@ -168,7 +168,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:45:54",
         lng: lnglat.lng01,
         lat: lnglat.lat01,
-        remark: ""
+        remark: "",
       },
       {
         name: "陕西粉面馆",
@@ -177,7 +177,7 @@ const patrolDetails = {
         passTime: "2020-03-18 10:12:54",
         lng: lnglat.lng02,
         lat: lnglat.lat02,
-        remark: ""
+        remark: "",
       },
       {
         name: "海极鲜美食坊",
@@ -186,7 +186,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:36:54",
         lng: lnglat.lng03,
         lat: lnglat.lat03,
-        remark: ""
+        remark: "",
       },
       {
         name: "牛仔烧烤餐厅",
@@ -195,9 +195,9 @@ const patrolDetails = {
         passTime: "2020-03-18 09:57:54",
         lng: lnglat.lng04,
         lat: lnglat.lat04,
-        remark: ""
-      }
-    ]
+        remark: "",
+      },
+    ],
   },
   4: {
     beginTime: "2020-03-18 09:03:20",
@@ -215,7 +215,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:45:54",
         lng: lnglat.lng01,
         lat: lnglat.lat01,
-        remark: ""
+        remark: "",
       },
       {
         name: "陕西粉面馆",
@@ -224,7 +224,7 @@ const patrolDetails = {
         passTime: "2020-03-18 10:12:54",
         lng: lnglat.lng02,
         lat: lnglat.lat02,
-        remark: ""
+        remark: "",
       },
       {
         name: "海极鲜美食坊",
@@ -233,7 +233,7 @@ const patrolDetails = {
         passTime: "2020-03-18 09:36:54",
         lng: lnglat.lng03,
         lat: lnglat.lat03,
-        remark: ""
+        remark: "",
       },
       {
         name: "牛仔烧烤餐厅",
@@ -242,10 +242,10 @@ const patrolDetails = {
         passTime: "2020-03-18 09:57:54",
         lng: lnglat.lng04,
         lat: lnglat.lat04,
-        remark: ""
-      }
-    ]
-  }
+        remark: "",
+      },
+    ],
+  },
 };
 
 const patrolHistory = {
@@ -264,7 +264,7 @@ const patrolHistory = {
           passTime: "2020-03-18 09:45:54",
           lng: lnglat.lng01,
           lat: lnglat.lat01,
-          remark: ""
+          remark: "",
         },
         {
           name: "陕西粉面馆",
@@ -273,7 +273,7 @@ const patrolHistory = {
           passTime: "2020-03-18 10:12:54",
           lng: lnglat.lng02,
           lat: lnglat.lat02,
-          remark: ""
+          remark: "",
         },
         {
           name: "海极鲜美食坊",
@@ -282,7 +282,7 @@ const patrolHistory = {
           passTime: "2020-03-18 09:36:54",
           lng: lnglat.lng03,
           lat: lnglat.lat03,
-          remark: ""
+          remark: "",
         },
         {
           name: "牛仔烧烤餐厅",
@@ -291,9 +291,9 @@ const patrolHistory = {
           passTime: "2020-03-18 09:57:54",
           lng: lnglat.lng04,
           lat: lnglat.lat04,
-          remark: ""
-        }
-      ]
+          remark: "",
+        },
+      ],
     },
     {
       beginTime: "2020-03-17 09:03:20",
@@ -309,7 +309,7 @@ const patrolHistory = {
           passTime: "2020-03-17 09:45:54",
           lng: lnglat.lng01,
           lat: lnglat.lat01,
-          remark: ""
+          remark: "",
         },
         {
           name: "陕西粉面馆",
@@ -318,7 +318,7 @@ const patrolHistory = {
           passTime: "2020-03-17 10:12:54",
           lng: lnglat.lng02,
           lat: lnglat.lat02,
-          remark: ""
+          remark: "",
         },
         {
           name: "海极鲜美食坊",
@@ -327,7 +327,7 @@ const patrolHistory = {
           passTime: "2020-03-17 09:36:54",
           lng: lnglat.lng03,
           lat: lnglat.lat03,
-          remark: ""
+          remark: "",
         },
         {
           name: "牛仔烧烤餐厅",
@@ -336,11 +336,11 @@ const patrolHistory = {
           passTime: "2020-03-17 09:57:54",
           lng: lnglat.lng04,
           lat: lnglat.lat04,
-          remark: ""
-        }
-      ]
-    }
-  ]
+          remark: "",
+        },
+      ],
+    },
+  ],
 };
 
 export default { patrolList, patrolDetails, patrolHistory };

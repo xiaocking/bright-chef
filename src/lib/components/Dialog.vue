@@ -37,7 +37,7 @@ export default {
 		},
 		top: {
 			type: String,
-			default: "7%"
+			default: "6%"
 		},
 		height: {
 			type: String,

@@ -51,6 +51,7 @@ export default class GisPage extends Vue {
 .GisHome {
 	height: 100%;
 	position: relative;
+	overflow: hidden;
 	.GisHomeContent {
 		height: 0;
 		position: absolute;
@@ -70,7 +71,7 @@ export default class GisPage extends Vue {
 				position: absolute;
 				left: 0;
 				bottom: 0;
-				width: 120px;
+				width: 140px;
 				padding: 15px;
 				background: #fff;
 			}
