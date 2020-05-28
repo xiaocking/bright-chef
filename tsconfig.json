@@ -18,6 +18,7 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "noImplicitAny": false // 允许 隐式 any 类型
   },
+  "rules":[],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

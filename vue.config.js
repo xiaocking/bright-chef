@@ -5,9 +5,10 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 module.exports = {
-  publicPath: "./",
+  publicPath: "../brightChef",
+  outputDir: "brightChef",
   lintOnSave: true, //eslint-loader 是否在保存的时候检查
-  productionSourceMap: false, // 不生成map文件
+  productionSourceMap: true, // 不生成map文件
   chainWebpack: config => {
     config.resolve.alias
       .set("@", resolve("src"))
